@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
+import BookServicePage from "./Pages/BookServicePage";
 import HomePage from "./Pages/HomePage";
 import RegistrationForm from "./components/RegistrationForm";
 import ForgetPassword from "./Pages/ForgetPassword";
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {<HomePage />} />
         <Route path = "/login" element = {<LoginPage />} />
+        <Route path = "/bookservices" element = {<BookServicePage />} />
         <Route path = "/register" element = {<RegistrationForm />} />
         <Route path = "/forget-password" element = {<ForgetPassword />} />
         <Route path = "*" element = {<NotFound />} />
