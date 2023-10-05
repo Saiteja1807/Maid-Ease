@@ -1,20 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('./model/User');
+const User = require('./model/User');  // Assuming you've kept the same directory structure
+
 const app = express();
 
 app.use(express.json());
-app.use(cors(
-    {
-        credentials: true,
-        origin: 'http://localhost:3000'
-    }
-));
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
 
-mongoose.connect('mongodb+srv://rushda:8Pk72qVTzT2DWltL@cluster0.cxbkrgr.mongodb.net/?retryWrites=true&w=majority')
 
 const authenticate = async (req, res, next) => {
     try {
@@ -52,7 +49,7 @@ app.post('/register', async (req, res) => {
   
     try {
       // Check if a user with the same email already exists
-      const existingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
         return res.status(400).json({ message: 'Email already in use' });
       }
@@ -124,13 +121,17 @@ app.post('/register', async (req, res) => {
   });
 
   app.put('/user/profile', authenticate, async (req, res) => {
+    // For updating user with Sequelize
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.user._id,
-        { $set: req.body },
-        { new: true, runValidators: true }
-      );
-      res.status(200).json(updatedUser);
+      const [updated] = await User.update(req.body, {
+        where: { id: req.user.id }
+      });
+  
+      if (updated) {
+        const updatedUser = await User.findOne({ where: { id: req.user.id } });
+        return res.status(200).json({ user: updatedUser });
+      }
+      throw new Error('User not found');
     } catch (error) {
       console.error('Error updating user data:', error);
       res.status(500).json({ message: 'Server error' });
@@ -138,9 +139,16 @@ app.post('/register', async (req, res) => {
   });
 
   app.delete('/user/profile', authenticate, async (req, res) => {
+    // For deleting user with Sequelize
     try {
-      await User.findByIdAndDelete(req.user._id);
-      res.status(200).json({ message: 'User account deleted' });
+      const deleted = await User.destroy({
+        where: { id: req.user.id }
+      });
+  
+      if (deleted) {
+        return res.status(200).json({ message: 'User deleted' });
+      }
+      throw new Error('User not found');
     } catch (error) {
       console.error('Error deleting user account:', error);
       res.status(500).json({ message: 'Server error' });
