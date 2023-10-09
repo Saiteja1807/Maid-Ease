@@ -7,7 +7,7 @@ import NotFound from "./Pages/NotFound";
 import Profile from "./Pages/Profile";
 import InProgressPage from "./Pages/InProgressPage";
 import ProtectedComponent from './ProtectedComponent';
-
+import ManageServices from './Pages/ManageServices';
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route path = "*" element = {<NotFound />} />
         <Route path="/account/profile" element={<ProtectedComponent component={Profile} />} />
         <Route path = "/in-progress" element = {<InProgressPage />} />
+        <Route path="/Service" element={<ManageServices/>}/>
       </Routes>
     </div>
   );

@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('mysql://root:jahid37094@localhost:3306/maid_ease');
+const sequelize = new Sequelize('mysql://root:September@2022@localhost:3306/TEST');
 /*
 'maid_ease' is the name of your database.
 'root' is the username.
