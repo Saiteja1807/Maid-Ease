@@ -1,33 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const sequelize = new Sequelize('mysql://root:September@2022@localhost:3306/TEST');
-/*
-'maid_ease' is the name of your database.
-'root' is the username.
-'jahid37094' is the password.
-host: 'localhost' specifies the database host.
-dialect: 'mysql' tells Sequelize to use MySQL.
-port: 3306 is the default port for MySQL.
-
-datatable structure
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
-    address1 VARCHAR(255) NOT NULL,
-    address2 VARCHAR(255),  -- this can be NULL since it's optional
-    city VARCHAR(100) NOT NULL,
-    state VARCHAR(100) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    zip VARCHAR(20) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,  -- 'UNIQUE' ensures that the email is unique for every user
-    phoneNumber VARCHAR(20) NOT NULL,
-    password VARCHAR(255) NOT NULL,  -- this will store the hashed password
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-*/
+const sequelize = new Sequelize('mysql://root:Thankyou@1415@localhost:3306/maid_ease');
 const User = sequelize.define('User', {
   firstName: {
       type: DataTypes.STRING,
