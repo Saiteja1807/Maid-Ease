@@ -8,6 +8,8 @@ port: 3306 is the default port for MySQL.
 
 datatable structure
 
+--drop table users;
+
 CREATE TABLE UserRoles (
     UserRoledId INT AUTO_INCREMENT PRIMARY KEY,
     RoleName VARCHAR(255) NOT NULL,
@@ -61,7 +63,6 @@ CREATE TABLE UserDetails (
 CREATE TABLE ServiceTypes (
     ServiceTypeId INT AUTO_INCREMENT PRIMARY KEY,
     ServiceTypeName VARCHAR(255) NOT NULL,
-    ServiceTypeId INT NOT NULL,  --Foriegn Key of ServiceType
     IsActive BIT NOT NULL,
     CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
