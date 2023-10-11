@@ -240,8 +240,8 @@ CREATE TABLE `UserRoles` (
   `IsActive` bit(1) NOT NULL,
   `CreatedDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdatedDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CreatedBy` varchar(50) DEFAULT current_timestamp(),
-  `UpdatedBy` varchar(50) DEFAULT current_timestamp()
+  `CreatedBy` varchar(50) DEFAULT NULL),
+  `UpdatedBy` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
