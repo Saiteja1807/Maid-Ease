@@ -164,4 +164,21 @@ INSERT into StateDetails (StateName) values
 	('West Virginia'),
 	('Wisconsin'),
 	('Wyoming');
+
+****************
+
+-- UserRoles
+
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Admin',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Customer',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('ServiceProvider',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Advertsiment_Sales_Representative',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Account_Manager',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Manager',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Customer_Support_Executive',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Accountant',b'1','Manish');
+
+***********
+
+
 */
