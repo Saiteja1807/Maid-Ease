@@ -8,6 +8,8 @@ port: 3306 is the default port for MySQL.
 
 datatable structure
 
+--drop table users;
+
 CREATE TABLE UserRoles (
     UserRoledId INT AUTO_INCREMENT PRIMARY KEY,
     RoleName VARCHAR(255) NOT NULL,
@@ -56,12 +58,9 @@ CREATE TABLE UserDetails (
     UpdatedBy VARCHAR(50)
 );
 
-
-
 CREATE TABLE ServiceTypes (
     ServiceTypeId INT AUTO_INCREMENT PRIMARY KEY,
     ServiceTypeName VARCHAR(255) NOT NULL,
-    ServiceTypeId INT NOT NULL,  --Foriegn Key of ServiceType
     IsActive BIT NOT NULL,
     CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -77,7 +76,8 @@ CREATE TABLE ServiceProviderDetails (
     CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CreatedBy VARCHAR(50),
-    UpdatedBy VARCHAR(50)
+    UpdatedBy VARCHAR(50),
+    ImageURL VARCHAR(2000)
 );
 
 CREATE TABLE PriceDetails (
@@ -163,4 +163,21 @@ INSERT into StateDetails (StateName) values
 	('West Virginia'),
 	('Wisconsin'),
 	('Wyoming');
+
+****************
+
+-- UserRoles
+
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Admin',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Customer',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('ServiceProvider',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Advertsiment_Sales_Representative',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Account_Manager',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Manager',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Customer_Support_Executive',b'1','Manish');
+INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Accountant',b'1','Manish');
+
+***********
+
+
 */
