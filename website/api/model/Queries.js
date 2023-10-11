@@ -58,8 +58,6 @@ CREATE TABLE UserDetails (
     UpdatedBy VARCHAR(50)
 );
 
-
-
 CREATE TABLE ServiceTypes (
     ServiceTypeId INT AUTO_INCREMENT PRIMARY KEY,
     ServiceTypeName VARCHAR(255) NOT NULL,
@@ -78,7 +76,8 @@ CREATE TABLE ServiceProviderDetails (
     CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CreatedBy VARCHAR(50),
-    UpdatedBy VARCHAR(50)
+    UpdatedBy VARCHAR(50),
+    ImageURL VARCHAR(2000)
 );
 
 CREATE TABLE PriceDetails (
