@@ -240,6 +240,14 @@ INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId,
 
 ***** SeniorCare Record ******
 
+
 ****** ChildCare Record *******
+
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Rohit', 'Sharma','444 Central Avenue', '','Jersey City', 31, 'United States', '07307', 'rohitsharma@gmail.com', '2012171441','rohitsharma@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Virat', 'Kohli','76 Congress Street', '','Jersey City', 31, 'United States', '07306', 'viratkohli@gmail.com', '2012171441','viratkohli@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Rahul', 'Kumar','76 Congress Street', '','Jersey City', 31, 'United States', '07306', 'rahul@gmail.com', '2012171441','rahul@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Raj', 'Shah','379 Palisade Ave', '','Jersey City', 31, 'United States', '07306', 'raj@gmail.com', '2012171441','raj@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Anna', 'Shah','165 Hutton St', '','Jersey City', 31, 'United States', '07307', 'annashah@gmail.com', '2016568066','AnnaShah@1234','5', '3', b'1', 'Rushda Mansuri');
+
 
 */
