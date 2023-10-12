@@ -77,7 +77,8 @@ CREATE TABLE ServiceProviderDetails (
     UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CreatedBy VARCHAR(50),
     UpdatedBy VARCHAR(50),
-    ImageURL VARCHAR(2000)
+    ImageURL VARCHAR(2000),
+    Description VARCHAR(5000)
 );
 
 CREATE TABLE PriceDetails (
@@ -240,6 +241,19 @@ INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId,
 
 ***** SeniorCare Record ******
 
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Ameera', 'Patel','573 Pavonia Ave', '','Jersey City', 31, 'United States', '07306', 'ameerapatel@gmail.com', '7324241202','AmeeraPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('John', 'Patel','594 Newark Ave', '','Jersey City', 31, 'United States', '07080', 'johnpatel@gmail.com', '7324241202','johnPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Jaimin', 'Patel','732 Newark Ave', '','Jersey City', 31, 'United States', '07080', 'jaiminpatel@gmail.com', '7324241202','jaiminPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Ali', 'Patel','35 Journal Square Plaza', '','Jersey City', 31, 'United States', '07306', 'alipatel@gmail.com', '7324241202','AliPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Anish', 'Patel','28 Paterson St', '','Jersey City', 31, 'United States', '07307', 'anishpatel@gmail.com', '7324241202','AnishPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+
 ****** ChildCare Record *******
+
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Rohit', 'Sharma','444 Central Avenue', '','Jersey City', 31, 'United States', '07307', 'rohitsharma@gmail.com', '2012171441','rohitsharma@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Virat', 'Kohli','76 Congress Street', '','Jersey City', 31, 'United States', '07306', 'viratkohli@gmail.com', '2012171441','viratkohli@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Rahul', 'Kumar','76 Congress Street', '','Jersey City', 31, 'United States', '07306', 'rahul@gmail.com', '2012171441','rahul@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Raj', 'Shah','379 Palisade Ave', '','Jersey City', 31, 'United States', '07306', 'raj@gmail.com', '2012171441','raj@1234','5', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Anna', 'Shah','165 Hutton St', '','Jersey City', 31, 'United States', '07307', 'annashah@gmail.com', '2016568066','AnnaShah@1234','5', '3', b'1', 'Rushda Mansuri');
+
 
 */
