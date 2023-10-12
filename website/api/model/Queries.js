@@ -77,7 +77,8 @@ CREATE TABLE ServiceProviderDetails (
     UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CreatedBy VARCHAR(50),
     UpdatedBy VARCHAR(50),
-    ImageURL VARCHAR(2000)
+    ImageURL VARCHAR(2000),
+    Description VARCHAR(5000)
 );
 
 CREATE TABLE PriceDetails (
