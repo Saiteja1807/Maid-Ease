@@ -229,12 +229,17 @@ INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId,
 INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Amisha', 'Patel','534 Washington St', '','Westfield', 31, 'United States', '07090', 'AmishaPatel@gmail.com', '6464797472','AmishaPatel@1234','6', '3', b'1', 'Rushda Mansuri');
 INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Manish', 'Shah','4 Gifford Rd', '','Somerset', 31, 'United States', '08873', 'manishshah@gmail.com', '7323198857','ManishShah@1234','5', '3', b'1', 'Rushda Mansuri');
 
+
+****** HouseKeeping Record ******
+
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Mina', 'Goyal','1250 NJ-27', '','Colonia', 31, 'United States', '07067', 'minapatel@gmail.com', '8482891134','MinaPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Naved', 'Khan','180 Talmadge Rd', '#15','Edison', 31, 'United States', '8817', 'navedkhan@gmail.com', '7328127929','NavedKhan@1234','6', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Molly', 'Patel','2235 Morris Ave', '1st Floor','Union', 31, 'United States', '07083', 'mollypatel@gmail.com', '9089675888','MollyPatel@1234','7', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Nisha', 'Sheth','560 Springfield Ave', 'Suite 12M','Westfield', 31, 'United States', '07090', 'nisasheth@gmail.com', '9089197142','NishaSheth@1234','6', '3', b'1', 'Rushda Mansuri');
+INSERT INTO UserDetails (FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, Password, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy) VALUES ('Pratik', 'Shah','4 Gifford Rd', '','Somerset', 31, 'United States', '08821', 'pratikshah@gmail.com', '7323181460','PratikShah@1234','5', '3', b'1', 'Rushda Mansuri');
+
 ***** SeniorCare Record ******
 
 ****** ChildCare Record *******
-
-
-
-
 
 */
