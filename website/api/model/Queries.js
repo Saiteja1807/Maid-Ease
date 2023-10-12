@@ -285,6 +285,63 @@ INSERT INTO ServiceProviderDetails (UserDetailId, ServiceTypeId, IsActive, Creat
 INSERT INTO ServiceProviderDetails (UserDetailId, ServiceTypeId, IsActive, CreatedBy, ImageURL, Description) VALUES (41,3,b'1','Rushda Mansuri', '/images/SeniorCare4.jpg', ' The facility is designed to be a comfortable and inviting home away from home for seniors. It offers spacious and accessible living areas, well-maintained gardens, and a range of amenities tailored to promote physical and mental well-being. Safety measures are paramount, ensuring a secure and nurturing environment for seniors. This top-rated SeniorCare service goes beyond just basic care; it provides a comprehensive range of services to address the physical, emotional, and social needs of seniors. From nutritious meal plans to engaging activities and healthcare coordination, they provide a holistic and fulfilling experience that respects individual preferences and abilities. Moreover, this establishment is an advocate for open communication with families, ensuring they are kept well-informed about their loved ones progress and activities. Overall, this SeniorCare service in the nearby area stands as a paragon of excellence. Their stellar ratings are a testament to their exceptional care, and they continue to set the standard for what an outstanding SeniorCare experience should be.');
 INSERT INTO ServiceProviderDetails (UserDetailId, ServiceTypeId, IsActive, CreatedBy, ImageURL, Description) VALUES (43,3,b'1','Rushda Mansuri', '/images/SeniorCare5.jpg', ' The facility is designed to be a comfortable and inviting home away from home for seniors. It offers spacious and accessible living areas, well-maintained gardens, and a range of amenities tailored to promote physical and mental well-being. Safety measures are paramount, ensuring a secure and nurturing environment for seniors. This top-rated SeniorCare service goes beyond just basic care; it provides a comprehensive range of services to address the physical, emotional, and social needs of seniors. From nutritious meal plans to engaging activities and healthcare coordination, they provide a holistic and fulfilling experience that respects individual preferences and abilities. Moreover, this establishment is an advocate for open communication with families, ensuring they are kept well-informed about their loved ones progress and activities. Overall, this SeniorCare service in the nearby area stands as a paragon of excellence. Their stellar ratings are a testament to their exceptional care, and they continue to set the standard for what an outstanding SeniorCare experience should be.');
 
+*************
+
+-- PriceDetails
+
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (1,4,49.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (2,4,39.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (3,4,29.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (4,4,29.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (5,4,35.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (6,2,59.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (7,2,129.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (8,2,129.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (9,2,69.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (10,2,79.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (11,1,49.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (12,1,35.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (13,1,29.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (14,1,229.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (15,1,235.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (16,5,259.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (17,5,129.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (18,5,129.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (19,5,169.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (20,5,289.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (21,3,69.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (22,3,99.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (23,3,89.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (24,3,99.99,b'1','Rushda Mansuri');
+INSERT INTO PriceDetails (ServiceProviderId, ServiceTypeId, Price, IsActive, CreatedBy) VALUES (25,3,95.99,b'1','Rushda Mansuri');
+
+*************
+
+-- FavouriteDetails
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (1,1,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (1,2,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (1,3,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (3,4,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (3,5,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (3,6,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (4,7,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (4,8,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (4,9,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (5,10,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (5,11,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (5,12,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (6,13,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (6,14,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (6,15,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (7,16,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (7,17,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (7,18,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (8,19,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (8,20,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (8,21,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (9,22,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (9,23,b'1', b'1', 'Rushda Mansuri');
+INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (9,24,b'1', b'1', 'Rushda Mansuri');
 
 
 */
