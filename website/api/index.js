@@ -16,8 +16,11 @@ app.use(cors({
 const authenticate = async (req, res, next) => {
     try {
       const token = req.header('Authorization').replace('Bearer ', '');
-      const decoded = jwt.verify(token, 'your_jwt_secret');
-      const user = await User.findById(decoded.id);
+      const decoded = jwt.verify(token, 'your_jwt_secret');  
+        // Insert the logging statement here to check the content of the decoded JWT
+        console.log("Decoded JWT:", decoded);
+
+      const user = await User.findByPk(decoded.id);
   
       if (!user) {
         throw new Error('User not found');
@@ -102,7 +105,8 @@ app.post('/register', async (req, res) => {
         return res.status(401).json({ message: 'Incorrect email or password' });
       }
   
-      const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+      const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
+
   
       res.status(200).json({ message: 'Logged in successfully', token });
     } catch (error) {
