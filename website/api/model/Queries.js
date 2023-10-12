@@ -191,4 +191,15 @@ INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedB
 
 *************
 
+-- ServiceTypes
+
+INSERT INTO ServiceTypes (ServiceTypeName, IsActive, CreatedBy) VALUES ('HouseKeeping', b'1','Rushda Mansuri');
+INSERT INTO ServiceTypes (ServiceTypeName, IsActive, CreatedBy) VALUES ('PetCare', b'1','Rushda Mansuri');
+INSERT INTO ServiceTypes (ServiceTypeName, IsActive, CreatedBy) VALUES ('SeniorCare', b'1','Rushda Mansuri');
+INSERT INTO ServiceTypes (ServiceTypeName, IsActive, CreatedBy) VALUES ('Laundry', b'1','Rushda Mansuri');
+INSERT INTO ServiceTypes (ServiceTypeName, IsActive, CreatedBy) VALUES ('ChildCare', b'1','Rushda Mansuri');
+
+**************
+
+
 */
