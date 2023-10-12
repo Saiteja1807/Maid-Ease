@@ -179,5 +179,16 @@ INSERT INTO UserRoles (RoleName, IsActive, CreatedBy) VALUES ('Accountant',b'1',
 
 ***********
 
+-- SubscriptionTYpes
+
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('Customer Silver',10,2,'Rushda Mansuri');
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('Customer Gold',12,2,'Rushda Mansuri');
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('Customer Diamond',15,2,'Rushda Mansuri');
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('ServiceProvider Silver',20,3,'Rushda Mansuri');
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('ServiceProvider Gold',22,3,'Rushda Mansuri');
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('ServiceProvider Diamond',25,3,'Rushda Mansuri');
+INSERT INTO SubscriptionTypes (SubscriptionTypeName, Price, UserRoleId, CreatedBy) VALUES ('Admin Subscription',0,1,'Rushda Mansuri');
+
+*************
 
 */
