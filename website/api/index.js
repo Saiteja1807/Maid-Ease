@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('./model/User');  // Assuming you've kept the same directory structure
+const UserDetail = require('./model/UserDetails');  // Assuming you've kept the same directory structure
 
 const app = express();
 
@@ -17,7 +17,7 @@ const authenticate = async (req, res, next) => {
     try {
       const token = req.header('Authorization').replace('Bearer ', '');
       const decoded = jwt.verify(token, 'your_jwt_secret');
-      const user = await User.findById(decoded.id);
+      const user = await UserDetail.findById(decoded.id);
   
       if (!user) {
         throw new Error('User not found');
@@ -34,22 +34,26 @@ const authenticate = async (req, res, next) => {
 app.post('/register', async (req, res) => {
     // Destructure the request body
     const {
-      firstName,
-      lastName,
-      address1,
-      address2,
-      city,
-      state,
-      country,
-      zip,
-      email,
-      phoneNumber,
-      password,
+      FirstName,
+      LastName,
+      Address1,
+      Address2,
+      City,
+      StateId,
+      Country,
+      ZipCode,
+      EmailId,
+      ContactNo,
+      Password,
+      SubscriptionTypeId,
+      UserRoledId,
+      IsActive,
+      CreatedBy
     } = req.body;
   
     try {
       // Check if a user with the same email already exists
-      const existingUser = await User.findOne({ where: { email } });
+      const existingUser = await User.findOne({ where: { EmailId } });
       if (existingUser) {
         return res.status(400).json({ message: 'Email already in use' });
       }
@@ -58,21 +62,25 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
 
     // Hash the user's password
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(Password, salt);
   
       // Create a new user
-      const newUser = new User({
-        firstName,
-        lastName,
-        address1,
-        address2,
-        city,
-        state,
-        country,
-        zip,
-        email,
-        phoneNumber,
-        password: hashedPassword,
+      const newUser = new UserDetail({
+        FirstName,
+        LastName,
+        Address1,
+        Address2,
+        City,
+        StateId : 31,
+        Country,
+        ZipCode,
+        EmailId,
+        ContactNo,
+        Password: hashedPassword,
+        SubscriptionTypeId : 2,
+        UserRoledId : 2,
+        IsActive : true,
+        CreatedBy: "System",
       });
   
       // Save the user to the database
@@ -87,16 +95,16 @@ app.post('/register', async (req, res) => {
   });
 
   app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { EmailId, Password } = req.body;
   
     try {
-      const user = await User.findOne({ email });
+      const user = await UserDetail.findOne({ EmailId });
   
       if (!user) {
         return res.status(401).json({ message: 'Incorrect email or password' });
       }
   
-      const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      const isPasswordCorrect = await bcrypt.compare(Password, user.Password);
   
       if (!isPasswordCorrect) {
         return res.status(401).json({ message: 'Incorrect email or password' });
@@ -128,7 +136,7 @@ app.post('/register', async (req, res) => {
       });
   
       if (updated) {
-        const updatedUser = await User.findOne({ where: { id: req.user.id } });
+        const updatedUser = await UserDetail.findOne({ where: { id: req.user.id } });
         return res.status(200).json({ user: updatedUser });
       }
       throw new Error('User not found');
@@ -141,7 +149,7 @@ app.post('/register', async (req, res) => {
   app.delete('/user/profile', authenticate, async (req, res) => {
     // For deleting user with Sequelize
     try {
-      const deleted = await User.destroy({
+      const deleted = await UserDetail.destroy({
         where: { id: req.user.id }
       });
   
