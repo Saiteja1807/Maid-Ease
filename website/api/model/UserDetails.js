@@ -72,7 +72,7 @@ const UserDetails = sequelize.define('UserDetails', {
     },
     UpdatedBy: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
 
 }, {
