@@ -90,7 +90,7 @@ app.post('/register', async (req, res) => {
   
       // Save the user to the database
       await newUser.save();
-  
+
       // Send a success message
       res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
@@ -169,6 +169,13 @@ app.post('/register', async (req, res) => {
     }
   });
 
+
+/* Manage Services */
+
+
+
+
+
 app.get('/test', (req, res) => {
   res.send('Hello World!');
 });
@@ -176,3 +183,5 @@ app.get('/test', (req, res) => {
 app.listen(4000, () => {
   console.log('Server is listening on port 4000');
 });
+
+
