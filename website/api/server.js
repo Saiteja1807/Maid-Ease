@@ -27,11 +27,9 @@ const authenticate = async (req, res, next) => {
         const token = req.header('Authorization').replace('Bearer ', '');
         const decoded = jwt.verify(token, JWT_SECRET);
         const user = await UserDetails.findByPk(decoded.id);
-
         if (!user) {
             throw new Error('User not found');
         }
-
         req.user = user;
         next();
     } catch (error) {
@@ -111,7 +109,7 @@ app.post('/login', async (req, res) => {
 
     // If all is good, create a JWT token for the user
     const token = jwt.sign({ id: user.UserId }, JWT_SECRET, { expiresIn: '1h' });
-
+    localStorage.setItem('token', response.data.token);
     res.status(200).json({ token, userId: user.UserId });
 });
 
@@ -167,7 +165,6 @@ app.put('/user/profile', authenticate, async (req, res) => {
 app.delete('/user/profile', authenticate, async (req, res) => {
     try {
         const { UserId } = req.user;
-
         // Assuming UserDetails is the sequelize model
         const result = await UserDetails.destroy({
             where: { UserId: UserId }
@@ -271,6 +268,7 @@ app.get('/serviceproviders', async (req, res) => {
             UserDetails.EmailId AS Email, 
             UserDetails.Password AS Password, 
             UserDetails.ContactNo AS ContactNo, 
+            ServiceProviderDetails.ServiceProviderId AS ServiceProviderDetails,
             ServiceProviderDetails.ImageURL AS ImageURL, 
             ServiceProviderDetails.Description AS Description, 
             ServiceTypes.ServiceTypeName AS ServiceType, 
@@ -290,7 +288,54 @@ app.get('/serviceproviders', async (req, res) => {
     }
 });
 
+app.post('/favouritedetails', async (req, res) => {
+    try {
+      const {
+        UserId,
+        ServiceProviderId,
+        IsFavourite,
+        IsActive,
+        CreatedBy
+      } = req.body;
+  
+      // Create a new record in the FavouriteDetails table
+      const newFavourite = await FavouriteDetails.create({
+        UserId,
+        ServiceProviderId,
+        IsFavourite : true,
+        IsActive : true,
+        CreatedBy : "System"
+      });
+  
+      res.json(newFavourite);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error inserting data into the database.');
+    }
+  });
 
+app.delete('/favouritedetails/:id', async (req, res, next) => {
+    const favouriteId = req.params.id;
+
+    // Check if the record exists before attempting to delete
+    const existingFavorite = await FavouriteDetails.findByPk(favouriteId);
+
+    if (!existingFavorite) {
+        return res.status(404).json({ message: 'Favorite not found' });
+    }
+
+    // Perform the delete operation
+    await FavouriteDetails.destroy({
+        where: {
+            FavouriteId: favouriteId,
+        },
+    });
+
+    return res.status(204).send(); // Respond with a 204 No Content status for successful deletion
+}, (err, req, res, next) => { // Error handling middleware
+    console.error(err);
+    res.status(500).json({ message: 'Error deleting data from the database.' });
+}); 
 
 const PORT = 4000;
 app.listen(PORT, () => {
