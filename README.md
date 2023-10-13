@@ -25,9 +25,8 @@ The goal of this program is to deliver all essential household services on a sin
 -> Gets A1 service for little to no subscription fees.<br/>
 
 # Note:
--> Final Presentation folder: includes all the documents presented at the time of Final Presentation held on 05/09/2023.<br/>
--> Documentation Set folder: includes all the documents representing MaidEase business idea.<br/>
--> website folder: includes the source code developed in Spring 2023.<br/>
+-> CS691 folder: includes all the documents, presentations and code submitted in Spring2023.<br/>
+-> CS692 folder: includes all the documents, presentation and code submitted in Fa;;2023.<br/>
 
 # Build & Deployment Procedures:<br/>
 -> Clone this repository to your local machine.<br/>
