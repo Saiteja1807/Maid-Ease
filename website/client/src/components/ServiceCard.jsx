@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/ServiceCard.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 function ServiceCard() {
     return (
@@ -20,7 +21,6 @@ function ServiceCard() {
               <a href=""><i className="fa fa-heart"></i></a>
               <a href=""><i className="fa fa-shopping-cart"></i></a>
             </div>
-            <div><i className="fa-solid fa-star fa-flip"></i></div>
           </div>
         </div>
       </div>
