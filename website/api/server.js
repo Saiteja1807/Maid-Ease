@@ -26,7 +26,7 @@ const authenticate = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
         const decoded = jwt.verify(token, JWT_SECRET);
-        const user = await UserDetails.findById(decoded.id); // Adjusted to use UserDetails
+        const user = await UserDetails.findByPk(decoded.id);
 
         if (!user) {
             throw new Error('User not found');
