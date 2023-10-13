@@ -103,7 +103,7 @@ app.post('/login', async (req, res) => {
     }
 
     // Check if the provided password matches the one in the database
-    const isPasswordMatch = await bcrypt.compare(Password, user.Password);
+    const isPasswordMatch = Password === user.Password;
 
     if (!isPasswordMatch) {
         return res.status(401).send('Incorrect password.');

@@ -93,7 +93,7 @@ const Profile = () => {
           <div>
             <h1 className="text-4xl font-mono">Profile</h1>
             <hr className='border-t border-gray-400 my-2' />
-            <h2 className="text-2xl font-semibold">{userDetails.firstName} {userDetails.lastName}</h2>
+            <h2 className="text-2xl font-semibold">{userDetails.FirstName} {userDetails.LastName}</h2>
           </div>
           <button
             className="text-blue-600 hover:text-blue-800 focus:outline-none text-lg"

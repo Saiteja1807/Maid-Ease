@@ -11,8 +11,10 @@ const ServiceCard = ({data}) => {
         </div>
         <div className="product-details">
           <span className="product-catagory">{data.ServiceType}</span>
-          <h4><a href="">{data.FirstName} + {data.LastName}</a></h4>
+          <h4><a href="">{data.FirstName}  {data.LastName}</a></h4>
           <p>{data.Description}</p>
+          <p><b>Address: {data.Address1}, {data.City}, {data.StateName} {data.ZipCode}<br/>
+          ContactNo: {data.ContactNo}</b></p>
           <div className="product-bottom-details">
             <div className="product-price">${data.Price}</div>
             <div className="product-links">
