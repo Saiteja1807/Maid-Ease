@@ -1,5 +1,7 @@
 const express = require('express');
-const app = express();
+const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const UserRoles = require('./models/userRoles');
 const StateDetails = require('./models/StateDetails');
 const SubscriptionTypes = require('./models/SubscriptionTypes');
@@ -9,6 +11,178 @@ const ServiceProviderDetails = require('./models/ServiceProviderDetails');
 const PriceDetails = require('./models/PriceDetails');
 const FavouriteDetails = require('./models/FavouriteDetails');
 const sequelize = require('./database');
+
+const app = express();
+
+app.use(express.json());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
+
+const JWT_SECRET = 'your_jwt_secret';
+
+const authenticate = async (req, res, next) => {
+    try {
+        const token = req.header('Authorization').replace('Bearer ', '');
+        const decoded = jwt.verify(token, JWT_SECRET);
+        const user = await UserDetails.findById(decoded.id); // Adjusted to use UserDetails
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        req.user = user;
+        next();
+    } catch (error) {
+        console.error('Error authenticating user:', error);
+        res.status(401).json({ message: 'Please authenticate' });
+    }
+};
+
+app.post('/register', async (req, res) => {
+    const {
+        FirstName,
+        LastName,
+        Address1,
+        Address2,
+        City,
+        StateId,
+        Country,
+        ZipCode,
+        EmailId,
+        ContactNo,
+        Password,
+        SubscriptionTypeId,
+        UserRoledId,
+        IsActive,
+        CreatedBy
+    } = req.body;
+
+    const existingUser = await UserDetails.findOne({ where: { EmailId } });
+    if (existingUser) {
+        return res.status(400).send('Email already registered.');
+    }
+
+    const hashedPassword = await bcrypt.hash(Password, 8);
+
+    const user = await UserDetails.create({
+        FirstName,
+        LastName,
+        Address1,
+        Address2,
+        City,
+        StateId : 31,
+        Country,
+        ZipCode,
+        EmailId,
+        ContactNo,
+        Password: hashedPassword,
+        SubscriptionTypeId : 1,
+        UserRoledId : 2,
+        IsActive : true ,
+        CreatedBy : "System"
+    });
+
+    res.status(201).json({
+        userId: user.UserId,
+        email: user.EmailId,
+        firstName: user.FirstName,
+        lastName: user.LastName
+    });
+});
+
+app.post('/login', async (req, res) => {
+    const { EmailId, Password } = req.body;
+
+    // Try to find the user with the provided email
+    const user = await UserDetails.findOne({ where: { EmailId } });
+
+    if (!user) {
+        return res.status(404).send('User not found.');
+    }
+
+    // Check if the provided password matches the one in the database
+    const isPasswordMatch = Password === user.Password;
+
+    if (!isPasswordMatch) {
+        return res.status(401).send('Incorrect password.');
+    }
+
+    // If all is good, create a JWT token for the user
+    const token = jwt.sign({ id: user.UserId }, JWT_SECRET, { expiresIn: '1h' });
+
+    res.status(200).json({ token, userId: user.UserId });
+});
+
+app.get('/user/profile', authenticate, async (req, res) => {
+    try {
+        // Extract user details from the authenticated user (from the middleware)
+        const { UserId, FirstName, LastName, Address1, Address2, City, StateId, Country, ZipCode, EmailId, ContactNo, SubscriptionTypeId, UserRoledId, IsActive, CreatedBy } = req.user;
+
+        // Send the user details as a response
+        res.status(200).json({
+            UserId,
+            FirstName,
+            LastName,
+            Address1,
+            Address2,
+            City,
+            StateId,
+            Country,
+            ZipCode,
+            EmailId,
+            ContactNo,
+            SubscriptionTypeId,
+            UserRoledId,
+            IsActive,
+            CreatedBy
+        });
+    } catch (error) {
+        console.error('Error retrieving user profile:', error);
+        res.status(500).send('Failed to retrieve user profile.');
+    }
+});
+
+app.put('/user/profile', authenticate, async (req, res) => {
+    try {
+        const { UserId } = req.user;
+        
+        // Assuming UserDetails is the sequelize model
+        const updatedUser = await UserDetails.update(req.body, {
+            where: { UserId: UserId }
+        });
+
+        if (updatedUser[0] === 0) {
+            return res.status(404).send('User not found');
+        }
+
+        res.status(200).send('User profile updated successfully');
+    } catch (error) {
+        console.error('Error updating user profile:', error);
+        res.status(500).send('Failed to update user profile.');
+    }
+});
+
+app.delete('/user/profile', authenticate, async (req, res) => {
+    try {
+        const { UserId } = req.user;
+
+        // Assuming UserDetails is the sequelize model
+        const result = await UserDetails.destroy({
+            where: { UserId: UserId }
+        });
+
+        if (!result) {
+            return res.status(404).send('User not found');
+        }
+
+        res.status(200).send('User profile deleted successfully');
+    } catch (error) {
+        console.error('Error deleting user profile:', error);
+        res.status(500).send('Failed to delete user profile.');
+    }
+});
 
 
 app.get('/userroles', (req, res) => {

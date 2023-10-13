@@ -6,18 +6,19 @@ import axios from 'axios';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '',
-    country: '',
-    zip: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
-    confirmPassword: '',
+    FirstName: '',
+    LastName: '',
+    Address1: '',
+    Address2: '',
+    City: '',
+    StateId: 31,
+    State:'',
+    Country: '',
+    ZipCode: '',
+    EmailId: '',
+    ContactNo: '',
+    Password: '',
+    ConfirmPassword: '',
   });
 
   const [step, setStep] = useState(1);
@@ -27,32 +28,32 @@ const RegistrationForm = () => {
   const isFormValid = () => {
     if (step === 1) {
       const {
-        firstName,
-        lastName,
-        address1,
-        city,
-        state,
-        country,
-        zip,
-        email,
+        FirstName,
+        LastName,
+        Address1,
+        City,
+        State,
+        Country,
+        ZipCode,
+        EmailId,
       } = formData;
       return (
-        firstName &&
-        lastName &&
-        address1 &&
-        city &&
-        state &&
-        country &&
-        zip &&
-        email
+        FirstName &&
+        LastName &&
+        Address1 &&
+        City &&
+        State &&
+        Country &&
+        ZipCode &&
+        EmailId
       );
     } else {
-      const { phoneNumber, password, confirmPassword } = formData;
+      const { ContactNo, Password, ConfirmPassword } = formData;
       return (
-        phoneNumber &&
-        password &&
-        confirmPassword &&
-        password === confirmPassword
+        ContactNo &&
+        Password &&
+        ConfirmPassword &&
+        Password === ConfirmPassword
       );
     }
   };
@@ -103,7 +104,7 @@ const RegistrationForm = () => {
           type="text"
           id="firstName"
           name="firstName"
-          value={formData.firstName}
+          value={formData.FirstName}
           placeholder='First Name'
           onChange={handleChange}
           className="w-full py-2 px-4 border border-gray-300 rounded"
@@ -114,7 +115,7 @@ const RegistrationForm = () => {
           type="text"
           id="lastName"
           name="lastName"
-          value={formData.lastName}
+          value={formData.LastName}
           placeholder='Last Name'
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -125,7 +126,7 @@ const RegistrationForm = () => {
           type="text"
           id="address1"
           name="address1"
-          value={formData.address1}
+          value={formData.Address1}
           placeholder='Street Adress 1'
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -136,7 +137,7 @@ const RegistrationForm = () => {
           type="text"
           id="address2"
           name="address2"
-          value={formData.address2}
+          value={formData.Address2}
           onChange={handleChange}
           placeholder='Street Adress 2 (Optional)'
           className="w-full p-2 border border-gray-300 rounded"
@@ -147,7 +148,7 @@ const RegistrationForm = () => {
           type="text"
           id="city"
           name="city"
-          value={formData.city}
+          value={formData.City}
           placeholder='City'
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -158,7 +159,7 @@ const RegistrationForm = () => {
           type="text"
           id="state"
           name="state"
-          value={formData.state}
+          value={formData.State}
           placeholder='State'
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -169,7 +170,7 @@ const RegistrationForm = () => {
           type="text"
           id="country"
           name="country"
-          value={formData.country}
+          value={formData.Country}
           placeholder='Country'
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -191,7 +192,7 @@ const RegistrationForm = () => {
           type="email"
           id="email"
           name="email"
-          value={formData.email}
+          value={formData.EmailId}
           placeholder='Email Address'
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -208,7 +209,7 @@ const RegistrationForm = () => {
           type="text"
           id="phoneNumber"
           name="phoneNumber"
-          value={formData.phoneNumber}
+          value={formData.ContactNo}
           placeholder="Phone Number"
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -219,7 +220,7 @@ const RegistrationForm = () => {
           type="password"
           id="password"
           name="password"
-          value={formData.password}
+          value={formData.Password}
           placeholder="Password"
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
@@ -230,7 +231,7 @@ const RegistrationForm = () => {
           type="password"
           id="confirmPassword"
           name="confirmPassword"
-          value={formData.confirmPassword}
+          value={formData.ConfirmPassword}
           placeholder="Confirm Password"
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"

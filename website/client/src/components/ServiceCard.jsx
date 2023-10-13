@@ -2,21 +2,21 @@ import React from 'react';
 import '../css/ServiceCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-function ServiceCard() {
+const ServiceCard = ({data}) => {
     return (
         <div className="product-card">
         <div className="badge">Hot</div>
         <div className="product-tumb">
-          <img src="/images/laundry7.jpeg" alt=""/>
+          <img src={data.ImageURL} alt=""/>
         </div>
         <div className="product-details">
-          <span className="product-catagory">HouseHold Services</span>
-          <h4><a href="">Alex Laundry</a></h4>
-          <p>Alex Laundry is a standout service provider in the Edison community, boasting an impressive 4.5-star rating. With a keen eye for detail and a commitment to customer satisfaction, Alex has earned a reputation as a reliable and efficient laundry professional.
-            <br/><br/>Known for their punctuality and precision, Alex ensures that every garment entrusted to them receives the utmost care and attention. Their expertise extends beyond the routine wash-and-fold, as they are adept at handling delicate fabrics and special care items. Customers appreciate Alex's meticulous approach, knowing that their clothing is in capable hands.
-            </p>
+          <span className="product-catagory">{data.ServiceType}</span>
+          <h4><a href="">{data.FirstName}  {data.LastName}</a></h4>
+          <p>{data.Description}</p>
+          <p><b>Address: {data.Address1}, {data.City}, {data.StateName} {data.ZipCode}<br/>
+          ContactNo: {data.ContactNo}</b></p>
           <div className="product-bottom-details">
-            <div className="product-price"><small>$96.00</small>$49.99</div>
+            <div className="product-price">${data.Price}</div>
             <div className="product-links">
               <a href=""><i className="fa fa-heart"></i></a>
               <a href=""><i className="fa fa-shopping-cart"></i></a>

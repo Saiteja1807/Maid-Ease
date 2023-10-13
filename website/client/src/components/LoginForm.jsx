@@ -6,8 +6,8 @@ import axios from 'axios';
 function LoginForm() {
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [EmailId, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [animatedText, setAnimatedText] = useState('');
@@ -38,8 +38,8 @@ function LoginForm() {
         // Make an API call to your server for authentication
         try {
             const response = await axios.post('http://localhost:4000/login', {
-              email,
-              password,
+              EmailId,
+              Password,
             });
         
             if (response.status === 200) {
@@ -88,13 +88,13 @@ function LoginForm() {
                         type="email"
                         name="email"
                         placeholder="Email"
-                        value={email}
+                        value={EmailId}
                         onChange={handleInputChange(setEmail)}
                         className={`w-full px-3 py-2 border ${errorMessage ? 'border-red-500' : 'border-gray-300'
                             } rounded-md`}
                         required
                     />
-                    {errorMessage && email !== 'test@example.com' && (
+                    {errorMessage && EmailId !== 'test@example.com' && (
                         <span
                             onClick={clearInput(setEmail)}
                             className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
@@ -109,13 +109,13 @@ function LoginForm() {
                         type="password"
                         name="password"
                         placeholder="Password"
-                        value={password}
+                        value={Password}
                         onChange={handleInputChange(setPassword)}
                         className={`w-full px-3 py-2 border ${errorMessage ? 'border-red-500' : 'border-gray-300'
                             } rounded-md`}
                         required
                     />
-                    {errorMessage && password !== 'password' && (
+                    {errorMessage && Password !== 'password' && (
                         <span
                             onClick={clearInput(setPassword)}
                             className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
