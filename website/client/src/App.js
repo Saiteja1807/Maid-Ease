@@ -8,6 +8,7 @@ import Profile from "./Pages/Profile";
 import InProgressPage from "./Pages/InProgressPage";
 import ProtectedComponent from './ProtectedComponent';
 import ManageServices from './Pages/ManageServices';
+import Favorites from "./Pages/Favourites";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/account/profile" element={<ProtectedComponent component={Profile} />} />
         <Route path = "/in-progress" element = {<InProgressPage />} />
         <Route path="/Service" element={<ManageServices/>}/>
+        <Route path="/favourites" element={<Favorites/>}/>
       </Routes>
     </div>
   );

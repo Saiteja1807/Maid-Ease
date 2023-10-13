@@ -11,7 +11,7 @@ const ServiceProviderDetails = require('./models/ServiceProviderDetails');
 const PriceDetails = require('./models/PriceDetails');
 const FavouriteDetails = require('./models/FavouriteDetails');
 const sequelize = require('./database');
-
+const cookie = require('cookie');
 const app = express();
 
 app.use(express.json());
@@ -109,7 +109,14 @@ app.post('/login', async (req, res) => {
 
     // If all is good, create a JWT token for the user
     const token = jwt.sign({ id: user.UserId }, JWT_SECRET, { expiresIn: '1h' });
-    localStorage.setItem('token', response.data.token);
+    const tokenCookie = cookie.serialize('token', token, {
+        httpOnly: true,
+        maxAge: 3600000, // 1 hour in milliseconds
+        sameSite: 'strict', // Adjust the sameSite value as needed
+        secure: process.env.NODE_ENV === 'production', // Enable in production
+      });
+      
+    res.setHeader('Set-Cookie', tokenCookie);
     res.status(200).json({ token, userId: user.UserId });
 });
 
@@ -268,7 +275,7 @@ app.get('/serviceproviders', async (req, res) => {
             UserDetails.EmailId AS Email, 
             UserDetails.Password AS Password, 
             UserDetails.ContactNo AS ContactNo, 
-            ServiceProviderDetails.ServiceProviderId AS ServiceProviderDetails,
+            ServiceProviderDetails.ServiceProviderId AS ServiceProviderId,
             ServiceProviderDetails.ImageURL AS ImageURL, 
             ServiceProviderDetails.Description AS Description, 
             ServiceTypes.ServiceTypeName AS ServiceType, 
@@ -336,6 +343,41 @@ app.delete('/favouritedetails/:id', async (req, res, next) => {
     console.error(err);
     res.status(500).json({ message: 'Error deleting data from the database.' });
 }); 
+
+app.get('/favouriteslist', async (req, res) => {
+    const favouriteslistSQL = `
+    SELECT
+    UD.UserId AS UserId,
+    SUD.FirstName AS FirstName,
+    SUD.LastName AS LastName,
+    SUD.Address1 AS Address1,
+    SUD.Address2 AS Address2,
+    SUD.City AS City,
+    SUD.ZipCode As ZipCode,
+    SUD.EmailId AS Email,
+    SUD.ContactNo AS ContactNo,
+    SPD.ServiceProviderId AS ServiceProviderId,
+    SPD.ImageURL AS ImageURL,
+    SPD.Description AS Description,
+    ST.ServiceTypeName AS ServiceType,
+    PD.Price AS Price,
+    FD.FavouriteId AS FavouriteId
+    FROM UserDetails UD
+    JOIN FavouriteDetails FD ON UD.UserId = FD.UserId
+    JOIN ServiceProviderDetails SPD ON FD.ServiceProviderId = SPD.ServiceProviderId
+    JOIN ServiceTypes ST ON SPD.ServiceTypeId = ST.ServiceTypeId
+    JOIN PriceDetails PD ON SPD.ServiceProviderId = PD.ServiceProviderId
+    JOIN UserDetails SUD ON SPD.UserDetailId = SUD.UserId
+    JOIN StateDetails SD ON SD.StateId = SUD.StateId
+    WHERE UD.UserRoledId = 2 AND UD.UserId = 1`;
+
+    try {
+        const favourites = await sequelize.query(favouriteslistSQL, { type: sequelize.QueryTypes.SELECT });
+        res.json(favourites);
+    } catch (err) {
+        res.status(500).send('Error retrieving data from the database.');
+    }
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {
