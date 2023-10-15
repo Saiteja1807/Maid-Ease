@@ -105,6 +105,25 @@ CREATE TABLE FavouriteDetails (
     UpdatedBy VARCHAR(50)
 );
 
+CREATE TABLE CartDetails (
+    CartDetailId INT AUTO_INCREMENT PRIMARY KEY,
+    UserId INT NOT NULL,  -- Foriegn Key of UserDetail
+    ServiceProviderId INT NOT NULL,   -- Foriegn Key of ServiceProviderDetail
+    AddToCart BIT NOT NULL,  
+    IsActive BIT NOT NULL,
+    CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CreatedBy VARCHAR(50),
+    UpdatedBy VARCHAR(50)
+);
+
+ALTER TABLE ServiceProviderDetails ADD Ratings FLOAT;
+ALTER TABLE PriceDetails ADD DiscountinPercentage FLOAT;
+ALTER TABLE PriceDetails ADD OriginalPrice FLOAT;
+ALTER TABLE PriceDetails DROP COLUMN Price;
+ALTER TABLE PriceDetails ADD DiscountedPrice FLOAT;
+
+UPDATE PriceDetails SET DiscountinPercentage = 49, OriginalPrice = 99.99, DiscountedPrice = 49.99;
 */
 
 /*** INSERT Queries ***/
