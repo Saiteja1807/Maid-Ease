@@ -279,7 +279,11 @@ app.get('/serviceproviders', async (req, res) => {
             ServiceProviderDetails.ImageURL AS ImageURL, 
             ServiceProviderDetails.Description AS Description, 
             ServiceTypes.ServiceTypeName AS ServiceType, 
-            PriceDetails.Price AS Price 
+            PriceDetails.OriginalPrice AS OriginalPrice,
+            PriceDetails.DiscountinPercentage AS DiscountinPercentage,
+            PriceDetails.DiscountedPrice AS DiscountedPrice,
+            ServiceProviderDetails.Ratings AS Ratings, 
+            (CASE WHEN ServiceProviderDetails.Ratings >= 4 THEN true ELSE false END) AS IsHotDeal
         FROM ServiceProviderDetails 
         JOIN UserDetails ON ServiceProviderDetails.UserDetailId = UserDetails.UserId 
         JOIN ServiceTypes ON ServiceProviderDetails.ServiceTypeId = ServiceTypes.ServiceTypeId 
