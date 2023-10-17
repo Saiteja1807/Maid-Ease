@@ -44,7 +44,7 @@ const FavoriteCards = ({data, onRemove}) => {
             <div className="product-price">${data.Price}</div>
             <div className="product-links">
             <span><button className='favourite-delete' onClick={handleRemove}>Remove</button></span> &emsp; 
-              <span><i className="fa fa-shopping-cart"></i></span>
+              <span><button className='favourite-delete'>Add to Cart</button></span>
             </div>
           </div>
         </div>

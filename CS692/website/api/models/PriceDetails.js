@@ -25,10 +25,6 @@ PriceDetails.init({
             key: 'ServiceTypeId'
         }
     },
-    Price: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-    },
     IsActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false
@@ -47,6 +43,15 @@ PriceDetails.init({
     },
     UpdatedBy: {
         type: DataTypes.STRING
+    },
+    OriginalPrice: {
+        type: DataTypes.FLOAT
+    },
+    DiscountedPrice: {
+        type: DataTypes.FLOAT
+    },
+    DiscountinPercentage:{
+        type: DataTypes.FLOAT
     }
 }, {
     sequelize,

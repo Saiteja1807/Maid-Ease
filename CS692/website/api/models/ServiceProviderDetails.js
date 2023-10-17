@@ -49,6 +49,9 @@ ServiceProviderDetails.init({
     },
     Description: {
         type: DataTypes.STRING(5000)
+    },
+    Ratings: {
+        type: DataTypes.FLOAT
     }
 }, {
     sequelize,

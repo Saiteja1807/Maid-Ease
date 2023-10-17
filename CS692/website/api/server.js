@@ -364,8 +364,12 @@ app.get('/favouriteslist', async (req, res) => {
     SPD.ImageURL AS ImageURL,
     SPD.Description AS Description,
     ST.ServiceTypeName AS ServiceType,
-    PD.Price AS Price,
-    FD.FavouriteId AS FavouriteId
+    FD.FavouriteId AS FavouriteId,
+    PD.OriginalPrice AS OriginalPrice,
+    PD.DiscountinPercentage AS DiscountinPercentage,
+    PD.DiscountedPrice AS DiscountedPrice,
+    SPD.Ratings AS Ratings, 
+    (CASE WHEN SPD.Ratings >= 4 THEN true ELSE false END) AS IsHotDeal
     FROM UserDetails UD
     JOIN FavouriteDetails FD ON UD.UserId = FD.UserId
     JOIN ServiceProviderDetails SPD ON FD.ServiceProviderId = SPD.ServiceProviderId

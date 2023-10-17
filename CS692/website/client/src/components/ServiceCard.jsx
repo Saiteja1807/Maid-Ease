@@ -62,8 +62,8 @@ const ServiceCard = ({data}) => {
           <div className="product-bottom-details">
             <div className="product-price">${data.Price}</div>
             <div className="product-links">
-              <span><i className="fa fa-heart" onClick={handleAddToFavorites}></i></span> &emsp; 
-              <span><i className="fa fa-shopping-cart"></i></span>
+              <span><button className='favourite-delete' onClick={handleAddToFavorites}>Add Favorites</button></span> &emsp; 
+              <span><button className='favourite-delete'>Add to Cart</button></span>
             </div>
           </div>
         </div>
