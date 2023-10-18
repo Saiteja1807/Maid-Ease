@@ -71,7 +71,15 @@ const ManageServices = () => {
       </div>
 
       {/* Add the search bar at the top */}
-      <input
+      <input style={{
+    display: 'block',          // Make it a block element
+    margin: '0 auto',          // Center horizontally
+    marginTop: '20px',         // Add top margin for vertical centering
+    width: '95%',              // Adjust the width as needed
+    padding: '10px',           // Add some padding
+    fontSize: '16px',          // Set the font size
+    textAlign: 'left',       // Center the text horizontally
+  }}
         type="text"
         placeholder="Search services"
         value={searchInput}
@@ -80,9 +88,14 @@ const ManageServices = () => {
       
       {/* Autocomplete suggestions */}
       {searchInput !== '' && (
-        <ul>
+        <ul style={{cursor:'pointer', paddingLeft:'50px' }}>
           {suggestions.map((suggestion, index) => (
-            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+            <li key={index} onClick={() => handleSuggestionClick(suggestion)} onKeyDown={(event)=>{ if(event.key==='Enter'){
+              handleSuggestionClick(suggestion);
+            }
+            }} role ="button"
+            tabIndex={0}
+            style={{cursor:'pointer'}}>
               {suggestion}
             </li>
           ))}
