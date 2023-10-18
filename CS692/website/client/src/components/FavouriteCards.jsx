@@ -37,6 +37,7 @@ const FavoriteCards = ({data, onRemove}) => {
         <div className="product-details">
           <span className="product-catagory">{data.ServiceType}</span>
           <h4>{data.FirstName}  {data.LastName}</h4>
+          <span class="ratings-yellow-star"><b>{data.Ratings}</b> <i class="fa fa-star ratings-yellow-star" aria-hidden="true"></i></span>
           <p>{data.Description}</p>
           <p><b>Address: {data.Address1}, {data.City}, {data.State} {data.ZipCode}<br/>
           ContactNo: {data.ContactNo}</b></p>
