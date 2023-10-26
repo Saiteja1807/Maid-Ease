@@ -130,3 +130,7 @@
 .ratings-yellow-star{
     color: #fbb72c;
 }
+
+.subheader{
+    position: fixed;
+}
