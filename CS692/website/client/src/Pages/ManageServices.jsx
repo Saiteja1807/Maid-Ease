@@ -7,7 +7,7 @@ import ServiceNavbar from '../components/ServiceNavbar';
 
 const ManageServices = () => {
   const [apiData, setData] = useState(null);
-
+  
   useEffect(() => {
     axios.get('http://localhost:4000/serviceproviders') 
       .then(response => setData(response.data))
@@ -18,11 +18,11 @@ const ManageServices = () => {
     <>
       <ServiceNavbar/><br /><br />
       <div className=" bg-[#672ab2]">
-        <div className="container mx-auto text-center py-3">
+      <div className="container mx-auto text-center py-3">
           <p className="text-sm text-white"><h2>HouseHold Services</h2></p>
         </div>
       </div>
-      
+
       {
         apiData && apiData.map(item => ( // Added a check for apiData
           <ServiceCard key={item.id} data={item}/>

@@ -3,22 +3,23 @@ import axios from 'axios';
 import '../css/ServiceCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
+import LoaderSpinner from '../components/LoaderSpinner';
 
 const FavoriteCards = ({data, onRemove}) => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const handleRemove = () => {
         // Make a DELETE request to remove the favorite
         axios
           .delete(`http://localhost:4000/favouritedetails/${data.FavouriteId}`)
           .then((response) => {
+            setLoading((loading) => !loading);
             if (response.status === 204) {
               // Removal was successful
               alert('Removed from Favourites.');
+              navigate('/favourites');
               onRemove(data.FavouriteId); 
-              /*setTimeout(() => {
-                navigate('/favourites');
-              }, 5000);*/
             } else {
               console.error('Unexpected response status:', response.status);
             }
@@ -27,7 +28,20 @@ const FavoriteCards = ({data, onRemove}) => {
             console.error('Error removing favorite:', error);
           });
       };
-
+      useEffect(() => {
+      const loadData = async () => { 
+        // Wait for two second
+        await new Promise((r) => setTimeout(r, 1000));
+        // Toggle loading state
+        setLoading((loading) => !loading);
+    };
+    loadData();
+  }, []);
+  if(!loading){
+    return <LoaderSpinner/>;
+  }
+  else
+  {  
     return (
         <div className="product-card">
         <div className="badge">Hot</div>
@@ -51,5 +65,5 @@ const FavoriteCards = ({data, onRemove}) => {
         </div>
       </div>
 )};
-
+    }
 export default FavoriteCards;

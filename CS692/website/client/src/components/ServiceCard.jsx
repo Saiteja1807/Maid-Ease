@@ -3,10 +3,14 @@ import axios from 'axios';
 import '../css/ServiceCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
+import LoaderSpinner from './LoaderSpinner';
 
 const ServiceCard = ({data}) => {
   const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
+  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     // Retrieve the JWT token from the cookie
     const token = document.cookie.split('; ').find(row => row.startsWith('jwt='))?.split('=')[1];
@@ -21,6 +25,14 @@ const ServiceCard = ({data}) => {
         setUserId(id);
       }
     }
+
+    const loadData = async () => { 
+      // Wait for two second
+      await new Promise((r) => setTimeout(r, 10000));
+      // Toggle loading state
+      setLoading((loading) => !loading);
+  };
+  loadData();
   }, []);
 
   const handleAddToFavorites = () => {
@@ -34,11 +46,10 @@ const ServiceCard = ({data}) => {
     axios.post('http://localhost:4000/favouritedetails', requestData)
       .then((response) => {
         console.log('Record added to favorites:', response.data);
+        setLoading((loading) => !loading);
         if (response.status === 200) { // If registration is successful
           alert('Added to Favourites.');
-          setTimeout(() => {
             navigate('/favourites');
-          }, 10000);
         }
       })
       .catch((error) => {
@@ -47,6 +58,10 @@ const ServiceCard = ({data}) => {
       });
   };
   
+  if(!loading){
+    return <LoaderSpinner/>;
+  }
+else{
     return (
         <div className="product-card">
         <div className="badge">Hot</div>
@@ -70,5 +85,5 @@ const ServiceCard = ({data}) => {
         </div>
       </div>
 )};
-
+    }
 export default ServiceCard;

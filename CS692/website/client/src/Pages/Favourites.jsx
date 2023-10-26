@@ -7,7 +7,7 @@ import FavoriteCards from '../components/FavouriteCards';
 
 const Favorites = () => {
   const [apiData, setData] = useState(null);
-
+  
   const removeFromFavorites = (favoriteId) => {
     // Filter out the removed favorite from the list
     const updatedList = apiData.filter((favorite) => favorite.FavouriteId !== favoriteId);
@@ -18,12 +18,13 @@ const Favorites = () => {
     axios.get('http://localhost:4000/favouriteslist') 
       .then(response => setData(response.data))
       .catch(error => console.error('Error:', error));
-  }, []);
 
+      
+  }, []);
   return (
     <>
       <FavouritesNavbar/><br /><br />
-      <div className=" bg-[#672ab2]">
+      <div className="bg-[#672ab2]">
         <div className="container mx-auto text-center py-3">
           <p className="text-sm text-white"><h2>Your Favourites</h2></p>
         </div>
