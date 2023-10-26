@@ -7,7 +7,7 @@ import FavoriteCards from '../components/FavouriteCards';
 
 const Favorites = () => {
   const [apiData, setData] = useState(null);
-
+  
   const removeFromFavorites = (favoriteId) => {
     // Filter out the removed favorite from the list
     const updatedList = apiData.filter((favorite) => favorite.FavouriteId !== favoriteId);
@@ -18,8 +18,9 @@ const Favorites = () => {
     axios.get('http://localhost:4000/favouriteslist') 
       .then(response => setData(response.data))
       .catch(error => console.error('Error:', error));
-  }, []);
 
+      
+  }, []);
   return (
     <>
       <FavouritesNavbar/><br /><br />

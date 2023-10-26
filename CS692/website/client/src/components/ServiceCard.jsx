@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../css/ServiceCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
+import LoaderSpinner from './LoaderSpinner';
 
 const ServiceCard = ({data}) => {
   const [userId, setUserId] = useState(null);
@@ -48,9 +49,7 @@ const ServiceCard = ({data}) => {
         setLoading((loading) => !loading);
         if (response.status === 200) { // If registration is successful
           alert('Added to Favourites.');
-          setTimeout(() => {
             navigate('/favourites');
-          }, 10000);
         }
       })
       .catch((error) => {
@@ -59,8 +58,11 @@ const ServiceCard = ({data}) => {
       });
   };
   
+  if(!loading){
+    return <LoaderSpinner/>;
+  }
+else{
     return (
-      <>
         <div className="product-card">
         <div className="badge">Hot</div>
         <div className="product-tumb">
@@ -82,7 +84,6 @@ const ServiceCard = ({data}) => {
           </div>
         </div>
       </div>
-      </>
 )};
-
+    }
 export default ServiceCard;
