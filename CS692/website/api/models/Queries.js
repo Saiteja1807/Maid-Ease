@@ -124,6 +124,54 @@ ALTER TABLE PriceDetails DROP COLUMN Price;
 ALTER TABLE PriceDetails ADD DiscountedPrice FLOAT;
 
 UPDATE PriceDetails SET DiscountinPercentage = 49, OriginalPrice = 99.99, DiscountedPrice = 49.99;
+
+CREATE TABLE BookingDetails (
+        BookingId INT AUTO_INCREMENT PRIMARY KEY,
+        UserId INT NOT NULL, -- Foriegn Key of UserDetails
+        ServiceProviderId1 INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
+        ServiceProviderId2 INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
+        ServiceProviderId3 INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
+        PriceId INT NOT NULL, -- Foriegn Key of PriceDetails
+        NetAmount FLOAT,
+        Tax FLOAT,
+        Discount FLOAT,
+        TotalPrice FLOAT,
+        BookingStartDate DATE,
+        BookingEndDate DATE,
+        IsActive BIT NOT NULL,
+        CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        CreatedBy VARCHAR(50),
+        UpdatedBy VARCHAR(50)
+);
+
+CREATE TABLE RatingDetails (
+        RatingsId INT AUTO_INCREMENT PRIMARY KEY,
+        UserId INT NOT NULL, -- Foriegn Key of UserDetails
+        ServiceProviderId INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
+        Ratings FLOAT NOT NULL, 
+        Comments VARCHAR(50),
+        ReviewGivenDate DATE,
+        IsActive BIT NOT NULL,
+        CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        CreatedBy VARCHAR(50),
+        UpdatedBy VARCHAR(50)
+);
+
+CREATE TABLE UserHistoryDetails (
+        UserHistoryId INT AUTO_INCREMENT PRIMARY KEY,
+        UserId INT NOT NULL, -- Foriegn Key of UserDetails
+        Activity VARCHAR(50),
+        Comments VARCHAR(50),
+        ActivityDate DATE,
+        IsActive BIT NOT NULL,
+        CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        CreatedBy VARCHAR(50),
+        UpdatedBy VARCHAR(50)
+);
+
 */
 
 /*** INSERT Queries ***/
