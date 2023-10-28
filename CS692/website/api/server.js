@@ -387,6 +387,37 @@ app.get('/favouriteslist', async (req, res) => {
     }
 });
 
+app.get('/userHistory/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    const userHistorySQL = `
+        SELECT 
+            UHD.UserId,
+            UHD.Activity,
+            UHD.Comments,
+            UD.FirstName,
+            UD.LastName,
+            UD.EmailId,
+            UD.ContactNo,
+            UHD.ActivityDate,
+            UHD.CreatedBy
+        FROM UserHistoryDetails UHD
+        JOIN UserDetails UD ON UHD.UserId = UD.UserId
+        WHERE UHD.UserId = ?`;
+
+    try {
+        const userHistory = await sequelize.query(userHistorySQL, {
+            replacements: [userId],
+            type: sequelize.QueryTypes.SELECT
+        });
+        res.json(userHistory);
+    } catch (err) {
+        res.status(500).send('Error retrieving data from the database.');
+    }
+});
+
+
+
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
