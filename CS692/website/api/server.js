@@ -279,7 +279,11 @@ app.get('/serviceproviders', async (req, res) => {
             ServiceProviderDetails.ImageURL AS ImageURL, 
             ServiceProviderDetails.Description AS Description, 
             ServiceTypes.ServiceTypeName AS ServiceType, 
-            PriceDetails.Price AS Price 
+            PriceDetails.OriginalPrice AS OriginalPrice,
+            PriceDetails.DiscountinPercentage AS DiscountinPercentage,
+            PriceDetails.DiscountedPrice AS DiscountedPrice,
+            ServiceProviderDetails.Ratings AS Ratings, 
+            (CASE WHEN ServiceProviderDetails.Ratings >= 4 THEN true ELSE false END) AS IsHotDeal
         FROM ServiceProviderDetails 
         JOIN UserDetails ON ServiceProviderDetails.UserDetailId = UserDetails.UserId 
         JOIN ServiceTypes ON ServiceProviderDetails.ServiceTypeId = ServiceTypes.ServiceTypeId 
@@ -360,8 +364,12 @@ app.get('/favouriteslist', async (req, res) => {
     SPD.ImageURL AS ImageURL,
     SPD.Description AS Description,
     ST.ServiceTypeName AS ServiceType,
-    PD.Price AS Price,
-    FD.FavouriteId AS FavouriteId
+    FD.FavouriteId AS FavouriteId,
+    PD.OriginalPrice AS OriginalPrice,
+    PD.DiscountinPercentage AS DiscountinPercentage,
+    PD.DiscountedPrice AS DiscountedPrice,
+    SPD.Ratings AS Ratings, 
+    (CASE WHEN SPD.Ratings >= 4 THEN true ELSE false END) AS IsHotDeal
     FROM UserDetails UD
     JOIN FavouriteDetails FD ON UD.UserId = FD.UserId
     JOIN ServiceProviderDetails SPD ON FD.ServiceProviderId = SPD.ServiceProviderId
@@ -378,6 +386,37 @@ app.get('/favouriteslist', async (req, res) => {
         res.status(500).send('Error retrieving data from the database.');
     }
 });
+
+app.get('/userHistory/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    const userHistorySQL = `
+        SELECT 
+            UHD.UserId,
+            UHD.Activity,
+            UHD.Comments,
+            UD.FirstName,
+            UD.LastName,
+            UD.EmailId,
+            UD.ContactNo,
+            UHD.ActivityDate,
+            UHD.CreatedBy
+        FROM UserHistoryDetails UHD
+        JOIN UserDetails UD ON UHD.UserId = UD.UserId
+        WHERE UHD.UserId = ?`;
+
+    try {
+        const userHistory = await sequelize.query(userHistorySQL, {
+            replacements: [userId],
+            type: sequelize.QueryTypes.SELECT
+        });
+        res.json(userHistory);
+    } catch (err) {
+        res.status(500).send('Error retrieving data from the database.');
+    }
+});
+
+
 
 const PORT = 4000;
 app.listen(PORT, () => {

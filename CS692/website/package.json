@@ -9,6 +9,7 @@
     "js-cookie": "^3.0.5",
     "mysql": "^2.18.1",
     "mysql2": "^3.6.1",
+    "react-loader-spinner": "^5.4.5",
     "sequelize": "^6.33.0",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5"

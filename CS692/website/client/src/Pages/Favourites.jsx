@@ -12,9 +12,6 @@ const Favorites = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [selectedSuggestion, setSelectedSuggestion] = useState('');
 
-
-
-
   const removeFromFavorites = (favoriteId) => {
     // Filter out the removed favorite from the list
     const updatedList = apiData.filter((favorite) => favorite.FavouriteId !== favoriteId);
@@ -72,13 +69,11 @@ const Favorites = () => {
 
 
   };
-  
-
-
+  }, []);
   return (
     <>
       <FavouritesNavbar/><br /><br />
-      <div className=" bg-[#672ab2]">
+      <div className="bg-[#672ab2]">
         <div className="container mx-auto text-center py-3">
           <p className="text-sm text-white"><h2>Your Favourites</h2></p>
         </div>

@@ -11,7 +11,7 @@ const ManageServices = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [selectedSuggestion, setSelectedSuggestion] = useState('');
-
+  
   useEffect(() => {
     axios.get('http://localhost:4000/serviceproviders')
       .then(response => {
@@ -107,6 +107,13 @@ const ManageServices = () => {
         <ServiceCard key={item.id} data={item} />
       ))}
       <br /> <br /> <br />
+
+      {
+        apiData && apiData.map(item => ( // Added a check for apiData
+          <ServiceCard key={item.id} data={item}/>
+        ))
+      }
+      <br /><br /><br />
       <Footer/>
     </>
   );

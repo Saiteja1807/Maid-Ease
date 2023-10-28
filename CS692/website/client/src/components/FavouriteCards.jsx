@@ -3,22 +3,23 @@ import axios from 'axios';
 import '../css/ServiceCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { useNavigate } from 'react-router-dom';
+import LoaderSpinner from '../components/LoaderSpinner';
 
 const FavoriteCards = ({data, onRemove}) => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const handleRemove = () => {
         // Make a DELETE request to remove the favorite
         axios
           .delete(`http://localhost:4000/favouritedetails/${data.FavouriteId}`)
           .then((response) => {
+            setLoading((loading) => !loading);
             if (response.status === 204) {
               // Removal was successful
               alert('Removed from Favourites.');
+              navigate('/favourites');
               onRemove(data.FavouriteId); 
-              /*setTimeout(() => {
-                navigate('/favourites');
-              }, 5000);*/
             } else {
               console.error('Unexpected response status:', response.status);
             }
@@ -27,7 +28,20 @@ const FavoriteCards = ({data, onRemove}) => {
             console.error('Error removing favorite:', error);
           });
       };
-
+      useEffect(() => {
+      const loadData = async () => { 
+        // Wait for two second
+        await new Promise((r) => setTimeout(r, 1000));
+        // Toggle loading state
+        setLoading((loading) => !loading);
+    };
+    loadData();
+  }, []);
+  if(!loading){
+    return <LoaderSpinner/>;
+  }
+  else
+  {  
     return (
         <div className="product-card">
         <div className="badge">Hot</div>
@@ -37,6 +51,7 @@ const FavoriteCards = ({data, onRemove}) => {
         <div className="product-details">
           <span className="product-catagory">{data.ServiceType}</span>
           <h4>{data.FirstName}  {data.LastName}</h4>
+          <span class="ratings-yellow-star"><b>{data.Ratings}</b> <i class="fa fa-star ratings-yellow-star" aria-hidden="true"></i></span>
           <p>{data.Description}</p>
           <p><b>Address: {data.Address1}, {data.City}, {data.State} {data.ZipCode}<br/>
           ContactNo: {data.ContactNo}</b></p>
@@ -44,12 +59,12 @@ const FavoriteCards = ({data, onRemove}) => {
             <div className="product-price" style={{textDecoration: 'line-through'}}>${data.Price}</div>
             <div className="product-links">
             <span><button className='favourite-delete' onClick={handleRemove}>Remove</button></span> &emsp; 
-              <span><i className="fa fa-shopping-cart"></i></span>
+              <span><button className='favourite-delete'>Add to Cart</button></span>
             </div>
             <div className="product-price" >${Math.floor(data.Price-20)}</div>
           </div>
         </div>
       </div>
 )};
-
+    }
 export default FavoriteCards;

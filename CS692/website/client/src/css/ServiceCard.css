@@ -126,3 +126,11 @@
     color: #363636;
     background-color:#fbb72c;
   }
+
+.ratings-yellow-star{
+    color: #fbb72c;
+}
+
+.subheader{
+    position: fixed;
+}
