@@ -56,11 +56,12 @@ const FavoriteCards = ({data, onRemove}) => {
           <p><b>Address: {data.Address1}, {data.City}, {data.State} {data.ZipCode}<br/>
           ContactNo: {data.ContactNo}</b></p>
           <div className="product-bottom-details">
-            <div className="product-price">${data.Price}</div>
+            <div className="product-price" style={{textDecoration: 'line-through'}}>${data.Price}</div>
             <div className="product-links">
             <span><button className='favourite-delete' onClick={handleRemove}>Remove</button></span> &emsp; 
               <span><button className='favourite-delete'>Add to Cart</button></span>
             </div>
+            <div className="product-price" >${Math.floor(data.Price-20)}</div>
           </div>
         </div>
       </div>
