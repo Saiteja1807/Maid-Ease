@@ -69,7 +69,6 @@ const Favorites = () => {
 
 
   };
-  }, []);
   return (
     <>
       <FavouritesNavbar/><br /><br />
@@ -99,9 +98,6 @@ const Favorites = () => {
           ))}
         </ul>
       )}
-
-
-
       {filteredData.map(item=>(<FavoriteCards key={item.id} data={item} onRemove={removeFromFavorites}/> ))}
       
       

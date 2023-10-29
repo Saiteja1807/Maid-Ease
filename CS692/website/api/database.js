@@ -5,7 +5,7 @@ const sequelize = new Sequelize({
     host: 'localhost',
     database: 'maid_ease',
     username: 'root',
-    password: 'September@2022',
+    password: 'Thankyou@1415',
 });
 
 sequelize.authenticate()

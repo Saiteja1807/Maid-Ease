@@ -72,19 +72,15 @@ else{
           <span className="product-catagory">{data.ServiceType}</span>
           <h4>{data.FirstName}  {data.LastName}</h4>
           <span class="ratings-yellow-star"><b>{data.Ratings}</b> <i class="fa fa-star ratings-yellow-star" aria-hidden="true"></i></span>
-          <p>{data.Description}</p>
-          <p><b>Address: {data.Address1}, {data.City}, {data.State} {data.ZipCode}<br/>
-          ContactNo: {data.ContactNo}</b></p>
+          
+          <p><b>Address: {data.Address1}, {data.City}, {data.State} {data.ZipCode}<br/></b></p>
           <div className="product-bottom-details">
-            <div className="product-price" style={{textDecoration: 'line-through'}}>${data.Price}</div>
-            
+            <div className="product-price" style={{textDecoration: 'line-through'}}>${data.DiscountedPrice}</div>
             <div className="product-links">
               <span><button className='favourite-delete' onClick={handleAddToFavorites}>Add Favorites</button></span> &emsp; 
               <span><button className='favourite-delete'>Add to Cart</button></span>
-            </div>
-            
+            </div>  
           </div>
-          <div className="product-price">${Math.floor(data.Price-20)}</div>
         </div>
       </div>
 )};
