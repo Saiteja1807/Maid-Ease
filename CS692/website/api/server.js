@@ -459,6 +459,32 @@ app.get('/services/:serviceId', async (req, res) => {
     }
 });
 
+app.get('/ratings/:serviceProviderId', async (req, res) => {
+    const serviceProviderId = req.params.serviceProviderId; 
+
+    const ratingsSQL = `
+        SELECT 
+            RatingDetails.RatingsId AS RatingsId,
+            RatingDetails.UserId AS UserId,
+            RatingDetails.Ratings AS Ratings,
+            RatingDetails.Comments AS Comments,
+            RatingDetails.ReviewGivenDate AS ReviewGivenDate,
+            UserDetails.FirstName AS FirstName,
+            UserDetails.LastName AS LastName
+        FROM RatingDetails 
+        JOIN UserDetails ON RatingDetails.UserId = UserDetails.UserId 
+        WHERE RatingDetails.ServiceProviderId = ?`;
+
+    try {
+        const ratings = await sequelize.query(ratingsSQL, { 
+            type: sequelize.QueryTypes.SELECT,
+            replacements: [serviceProviderId]
+        });
+        res.json(ratings);
+    } catch (err) {
+        res.status(500).send('Error retrieving data from the database.');
+    }
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {
