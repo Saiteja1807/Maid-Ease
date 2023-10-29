@@ -12,8 +12,10 @@ const Navbar = () => {
   };
 
   const handleSignOut = () => {
+    // Implement your sign out logic here
     localStorage.removeItem('authToken');
     setLoggedIn(false);
+    navigate('/')
   };
 
   return (

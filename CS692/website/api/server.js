@@ -10,6 +10,7 @@ const ServiceTypes = require('./models/ServiceTypes');
 const ServiceProviderDetails = require('./models/ServiceProviderDetails');
 const PriceDetails = require('./models/PriceDetails');
 const FavouriteDetails = require('./models/FavouriteDetails');
+const CartDetails = require('./models/CartDetails');
 const sequelize = require('./database');
 const cookie = require('cookie');
 const app = express();
@@ -298,6 +299,34 @@ app.get('/serviceproviders', async (req, res) => {
         res.status(500).send('Error retrieving data from the database.');
     }
 });
+app.post('/cartdetails', async (req, res) => {
+    try {
+        const {
+            UserId,
+            ServiceProviderId,
+            AddToCart,
+            IsActive,
+            CreatedBy,
+            UpdatedBy
+        } = req.body;
+
+        // Create a new record in the CartDetails table
+        const newCartDetail = await CartDetails.create({
+            UserId,
+            ServiceProviderId,
+            AddToCart: true,  // Assuming the cart detail should be active by default
+            IsActive: true,  // Assuming the cart detail should be active by default
+            CreatedBy: "System",  // Defaulting to "System", change as needed
+            UpdatedBy: "System"  // Defaulting to "System", change as needed
+        });
+
+        res.json(newCartDetail);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error inserting data into the database.');
+    }
+});
+
 
 app.post('/favouritedetails', async (req, res) => {
     try {
