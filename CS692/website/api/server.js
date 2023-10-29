@@ -416,6 +416,48 @@ app.get('/userHistory/:userId', async (req, res) => {
     }
 });
 
+app.get('/services/:serviceId', async (req, res) => {
+    const serviceId = req.params.serviceId;
+
+    const serviceDetailsSQL = `
+        SELECT 
+            UserDetails.UserId AS UserId, 
+            UserDetails.FirstName AS FirstName, 
+            UserDetails.LastName AS LastName, 
+            UserDetails.Address1 AS Address1, 
+            UserDetails.Address2 AS Address2, 
+            UserDetails.City AS City, 
+            StateDetails.StateName AS State,
+            UserDetails.ZipCode As ZipCode, 
+            UserDetails.EmailId AS Email, 
+            UserDetails.Password AS Password, 
+            UserDetails.ContactNo AS ContactNo, 
+            ServiceProviderDetails.ServiceProviderId AS ServiceProviderId,
+            ServiceProviderDetails.ImageURL AS ImageURL, 
+            ServiceProviderDetails.Description AS Description, 
+            ServiceTypes.ServiceTypeName AS ServiceType, 
+            PriceDetails.OriginalPrice AS OriginalPrice,
+            PriceDetails.DiscountinPercentage AS DiscountinPercentage,
+            PriceDetails.DiscountedPrice AS DiscountedPrice,
+            ServiceProviderDetails.Ratings AS Ratings, 
+            (CASE WHEN ServiceProviderDetails.Ratings >= 4 THEN true ELSE false END) AS IsHotDeal
+        FROM ServiceProviderDetails 
+        JOIN UserDetails ON ServiceProviderDetails.UserDetailId = UserDetails.UserId 
+        JOIN ServiceTypes ON ServiceProviderDetails.ServiceTypeId = ServiceTypes.ServiceTypeId 
+        JOIN PriceDetails ON ServiceProviderDetails.ServiceProviderId = PriceDetails.ServiceProviderId 
+        JOIN StateDetails ON StateDetails.StateId = UserDetails.StateId 
+        WHERE UserDetails.UserRoledId = 3 AND ServiceProviderDetails.ServiceProviderId = ?`;
+
+    try {
+        const serviceDetails = await sequelize.query(serviceDetailsSQL, {
+            type: sequelize.QueryTypes.SELECT,
+            replacements: [serviceId]
+        });
+        res.json(serviceDetails);
+    } catch (err) {
+        res.status(500).send('Error retrieving data from the database.');
+    }
+});
 
 
 const PORT = 4000;
