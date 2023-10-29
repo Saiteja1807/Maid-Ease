@@ -9,6 +9,7 @@ import InProgressPage from "./Pages/InProgressPage";
 import ProtectedComponent from './ProtectedComponent';
 import ManageServices from './Pages/ManageServices';
 import Favorites from "./Pages/Favourites";
+import TrackingLoyalty from "./components/TrackingLoyalty";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path = "/in-progress" element = {<InProgressPage />} />
         <Route path="/Service" element={<ManageServices/>}/>
         <Route path="/favourites" element={<Favorites/>}/>
+        <Route path="/trackingLoyalty" element={<TrackingLoyalty/>}/>
       </Routes>
     </div>
   );

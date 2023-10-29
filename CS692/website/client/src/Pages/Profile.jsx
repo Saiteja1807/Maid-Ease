@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import DeleteAccountModal from '../components/DeleteAccount';
-import EditProfileModal from '../components/EditProfileModal'; // Add this import
+import EditProfileModal from '../components/EditProfileModal';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../css/Profile.css';  
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -48,6 +51,11 @@ const Profile = () => {
   const goBack = () => {
     navigate('/');
   }
+
+  const trackingLoyalty = () => {
+    navigate('/trackingLoyalty');
+  }
+
   useEffect(() => {
     reloadUserData();
   }, []);
@@ -87,55 +95,72 @@ const Profile = () => {
   const filteredUserDetails = Object.entries(userDetails).filter(([key]) => !['_id', 'password', '__v'].includes(key));
 
   return (
-<div className='bg-[#f2f2f2]'>
-      <div className="container mx-auto mt-0 py-6 px-4 min-h-screen">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-4xl font-mono">Profile</h1>
-            <hr className='border-t border-gray-400 my-2' />
-            <h2 className="text-2xl font-semibold">{userDetails.FirstName} {userDetails.LastName}</h2>
-          </div>
-          <button
-            className="text-blue-600 hover:text-blue-800 focus:outline-none text-lg"
-            onClick={openEditModal}
-          >
-            Edit
-          </button>
+    <>
+      <Navbar /><br /><br />
+      <div className="bg-[#672ab2]">
+        <div className="container mx-auto text-center py-3">
+          <h2 className="text-white">Profile</h2>
         </div>
-        <table className="w-full table-auto border-collapse">
-          <tbody>
-            {filteredUserDetails.map(([key, value]) => (
-              <tr key={key}>
-                <td className="font-semibold text-lg border px-2 py-1">{key.charAt(0).toUpperCase() + key.slice(1)}</td>
-                <td className="text-lg border px-2 py-1">{value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="flex justify-between mt-8">
-          <button
-            onClick={openModal}
-            className="w-1/5 mr-2 px-4 py-2 font-semibold text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none"
-          >
-            Delete Account
-          </button>
-          <button
-            onClick={goBack}
-            className="w-1/5 ml-2 px-4 py-2 font-semibold text-white bg-purple-600 rounded-md hover:bg-purple-700 focus:outline-none"
-          >
-            Back
-          </button>
-        </div>
-        {showModal && <DeleteAccountModal closeModal={closeModal} onDeleteAccount={deleteAccount} />}
-        {showEditModal && (
-          <EditProfileModal
-            closeModal={closeEditModal}
-            userDetails={userDetails}
-            onUpdate={reloadUserData}
-          />
-        )}
       </div>
-    </div>
+      <div className='profile-bg container mx-auto mt-0 py-6 px-4 min-h-screen'>
+          <div className="flex justify-between items-center mb-8">
+              <div>
+                  <h2 className="profile-subtitle">{userDetails.FirstName} {userDetails.LastName}</h2>
+              </div>
+              <button
+                  className="edit-button"
+                  onClick={openEditModal}
+              >
+                  Edit
+              </button>
+          </div>
+          <table className="tracking-table">  {/* Update table class */}
+              <thead className="tracking-thead"> {/* Add thead with the class */}
+                <tr>
+                  <th>Details</th>  {/* This is a placeholder; modify as per your structure */}
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody className="tracking-tbody">
+                  {filteredUserDetails.map(([key, value]) => (
+                      <tr key={key}>
+                          <td className="tracking-td">{key.charAt(0).toUpperCase() + key.slice(1)}</td>
+                          <td className="tracking-td">{value}</td>
+                      </tr>
+                  ))}
+              </tbody>
+          </table>
+          <div className="flex justify-between mt-8">
+              <button
+                  onClick={openModal}
+                  className="action-button delete-button"
+              >
+                  Delete Account
+              </button>
+              <button
+                  onClick={trackingLoyalty}
+                  className="action-button"
+              >
+                  Track Loyality 
+              </button>
+              <button
+                  onClick={goBack}
+                  className="action-button"
+              >
+                  Back
+              </button>
+          </div>
+          {showModal && <DeleteAccountModal closeModal={closeModal} onDeleteAccount={deleteAccount} />}
+          {showEditModal && (
+              <EditProfileModal
+                  closeModal={closeEditModal}
+                  userDetails={userDetails}
+                  onUpdate={reloadUserData}
+              />
+          )}
+      </div>
+      <Footer/>
+      </>
   );
 };
 
