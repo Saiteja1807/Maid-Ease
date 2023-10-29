@@ -6,12 +6,15 @@ import LoaderSpinner from './LoaderSpinner';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { useNavigate } from 'react-router-dom';
 
 const ServiceCardDetails = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [serviceDetails, setServiceDetails] = useState({});
     const [loading, setLoading] = useState(true);
     const [mapCoordinates, setMapCoordinates] = useState({ lat: 0, lng: 0 });
+    const [ratingsData, setRatingsData] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:4000/services/${id}`)
@@ -23,6 +26,14 @@ const ServiceCardDetails = () => {
             .catch((error) => {
                 console.error('Error fetching service details:', error);
             });
+
+        axios.get(`http://localhost:4000/ratings/${id}`)
+            .then((response) => {
+                setRatingsData(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching ratings:', error);
+            });        
     }, [id]);
 
     const loadMap = (serviceData) => {
@@ -39,36 +50,72 @@ const ServiceCardDetails = () => {
         }
     };
 
+    const handleAddToFavorites = () => {
+        const requestData = {
+          UserId: 1, 
+          ServiceProviderId: serviceDetails.ServiceProviderId,
+          IsFavourite: true,
+        };
+    
+        // Make a POST request to your API endpoint
+        axios.post('http://localhost:4000/favouritedetails', requestData)
+          .then((response) => {
+            console.log('Record added to favorites:', response.data);
+            setLoading((loading) => !loading);
+            if (response.status === 200) { // If registration is successful
+              alert('Added to Favourites.');
+                navigate('/favourites');
+            }
+          })
+          .catch((error) => {
+            // Handle errors here
+            console.error('Error adding to favorites:', error);
+          });
+      };
+
     if (loading) {
-        return <LoaderSpinner/>;
-    }
-    else
-    {
-    return (
-        <div>
-            <Navbar /><br /><br />
-            <div className="bg-[#672ab2]">
-                <div className="container mx-auto text-center py-3">
-                    <h2 className="text-sm text-white">{serviceDetails.FirstName} {serviceDetails.LastName} - {serviceDetails.ServiceType} Service's</h2>
+        return <LoaderSpinner />;
+    } else {
+        return (
+            <div>
+                <Navbar /><br /><br />
+                <div className="bg-[#672ab2]">
+                    <div className="container mx-auto text-center py-3">
+                        <h2 className="text-sm text-white">{serviceDetails.FirstName} {serviceDetails.LastName} - {serviceDetails.ServiceType} Service's</h2>
+                    </div>
                 </div>
+                <section className="service-details">
+                    <div className="service-details-container">
+                        <img src={serviceDetails.ImageURL} alt={`${serviceDetails.FirstName} ${serviceDetails.LastName}`} />
+                        <h2>{serviceDetails.FirstName} {serviceDetails.LastName}</h2>
+                        <div>{serviceDetails.ServiceType} &emsp;| &emsp; {serviceDetails.Ratings}<i className="fa fa-star ratings-yellow-star" aria-hidden="true"></i></div>
+                        <div>{serviceDetails.Description}</div>
+                        <div><b>Address:</b> {serviceDetails.Address1}, {serviceDetails.City}, {serviceDetails.State} {serviceDetails.ZipCode}</div>
+                        <div><b>Contact No:</b> +1 {serviceDetails.ContactNo}</div>
+                        <div><b>Email Address:</b> {serviceDetails.Email}</div>
+                        <div><b>Price:</b> <span style={{textDecoration: 'line-through'}}>${serviceDetails.OriginalPrice}</span> &nbsp;${serviceDetails.DiscountedPrice}</div>
+
+                        <div className="product-links">
+                            <span><button className='favourite-delete' onClick={handleAddToFavorites}>Add Favorites</button></span> &emsp; 
+                            <span><button className='favourite-delete'>Add to Cart</button></span>
+                        </div>
+                    </div>
+
+                    <div className="ratings-reviews-container">
+                        <h3>Ratings & Reviews:</h3>
+                        {ratingsData.map((rating) => (
+                            <div key={rating.RatingsId} className="rating-item">
+                                <h4>{rating.FirstName} {rating.LastName}</h4>
+                                <p>{rating.Ratings}<i className="fa fa-star ratings-yellow-star" aria-hidden="true"></i></p>
+                                <p>{rating.Comments}</p>
+                                <small>Reviewed on {new Date(rating.ReviewGivenDate).toLocaleDateString()}</small>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+                <Footer />
             </div>
-            <section className="service-details">
-                <div className="service-details-container">
-                    <img src={serviceDetails.ImageURL} alt={`${serviceDetails.FirstName} ${serviceDetails.LastName}`} />
-                    <h2>{serviceDetails.FirstName} {serviceDetails.LastName}</h2>
-                    <div>{serviceDetails.ServiceType} &emsp;| &emsp; {serviceDetails.Ratings}<i className="fa fa-star ratings-yellow-star" aria-hidden="true"></i></div>
-                    <div>{serviceDetails.Description}</div>
-                    <div><b>Address:</b> {serviceDetails.Address1}, {serviceDetails.City}, {serviceDetails.State} {serviceDetails.ZipCode}</div>
-                    <div className="map-container">
-            </div>
-                    <div><b>Contact No:</b> +1 {serviceDetails.ContactNo}</div>
-                    <div><b>Email Address:</b> {serviceDetails.Email}</div>
-                    <div><b>Price:</b> <span  style={{textDecoration: 'line-through'}}>${serviceDetails.OriginalPrice}</span> &nbsp;${serviceDetails.DiscountedPrice}</div>
-                </div>
-            </section>
-            <Footer />
-        </div>
-    );
+        );
     }
 }
 
