@@ -44,7 +44,7 @@ const FavoriteCards = ({data, onRemove}) => {
   {  
     return (
         <div className="product-card">
-        <div className="badge">Hot</div>
+        { data.IsHotDeal ? <div className="badge">Hot</div> : null }
         <div className="product-tumb">
           <img src={data.ImageURL} alt=""/>
         </div>
