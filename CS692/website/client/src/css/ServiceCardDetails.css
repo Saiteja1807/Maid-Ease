@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.service-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    background: #f4f4f4;
+}
+
+.service-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    transition: transform 0.2s;
+}
+
+.service-details-container:hover {
+    transform: translateY(-10px);
+}
+
+.service-details-container img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    object-fit: cover;
+    align-self: flex-start;
+}
+
+.service-details-container img:hover {
+    transform: scale(1.05);
+}
+
+.service-details-container h2 {
+    font-size: 2rem;
+    color: #672ab2;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.service-details-container div {
+    font-size: 1rem;
+    color: #555;
+    margin: 8px 0;
+    line-height: 1.6;
+    align-self: flex-start;
+}
+
+.fa-star.ratings-yellow-star {
+    color: #ffc107;
+    margin-left: 5px;
+}

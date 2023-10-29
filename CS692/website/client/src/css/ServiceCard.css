@@ -57,7 +57,7 @@
 }
 
 .product-details h4 a:hover {
-    color: #fbb72c;
+    color: #672ab2;
 }
 
 .product-details p {
@@ -80,7 +80,7 @@
 
 .product-price {
     font-size: 18px;
-    color: #fbb72c;
+    color: #672ab2;
     font-weight: 600;
 }
 
@@ -105,11 +105,11 @@
 }
 
 .product-links a:hover {
-    color: #fbb72c;
+    color: #672ab2;
 }
 
 .favourite-delete{
-        background-color:#363636;
+        background-color:#672ab2;
         border: none;
         color: white;
         padding: 10px 14px;
@@ -124,11 +124,11 @@
 
 .favourite-delete:hover  {
     color: #363636;
-    background-color:#fbb72c;
+    background-color:#672ab2;
   }
 
 .ratings-yellow-star{
-    color: #fbb72c;
+    color: #672ab2;
 }
 
 .subheader{

@@ -10,6 +10,7 @@ import ProtectedComponent from './ProtectedComponent';
 import ManageServices from './Pages/ManageServices';
 import Favorites from "./Pages/Favourites";
 import TrackingLoyalty from "./components/TrackingLoyalty";
+import ServiceCardDetails from "./components/ServiceCardDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Service" element={<ManageServices/>}/>
         <Route path="/favourites" element={<Favorites/>}/>
         <Route path="/trackingLoyalty" element={<TrackingLoyalty/>}/>
+        <Route path="/service-details/:id" element={<ServiceCardDetails />} />
       </Routes>
     </div>
   );

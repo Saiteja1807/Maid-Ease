@@ -410,5 +410,120 @@ INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, 
 INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (2,23,b'1', b'1', 'Rushda Mansuri');
 INSERT INTO FavouriteDetails (UserId, ServiceProviderId, IsFavourite, IsActive, CreatedBy) VALUES (2,24,b'1', b'1', 'Rushda Mansuri');
 
+******* RatingDetails *************
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) VALUES (1, 1, 4.5, 'Excellent service!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES 
+(1, 2, 4.5, 'Excellent service!', '2023-10-29', b'1', 'Rushda Mansuri'),
+(1, 3, 4.0, 'Very good!', '2023-10-29', b'1', 'Rushda Mansuri'),
+(1, 4, 3.5, 'Good service', '2023-10-29', b'1', 'Rushda Mansuri'),
+(1, 5, 5.0, 'Outstanding!', '2023-10-29', b'1', 'Rushda Mansuri'),
+(1, 6, 3.0, 'Average service', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES 
+(2, 1, 4.0, 'Very good service', '2023-10-29', b'1', 'Rushda Mansuri'),
+(2, 2, 3.5, 'Satisfactory', '2023-10-29', b'1', 'Rushda Mansuri'),
+(2, 3, 4.5, 'Great service!', '2023-10-29', b'1', 'Rushda Mansuri'),
+(2, 4, 3.0, 'Could be better', '2023-10-29', b'1', 'Rushda Mansuri'),
+(2, 5, 5.0, 'Perfect!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES 
+(3, 1, 4.0, 'Very good service', '2023-10-29', b'1', 'Rushda Mansuri'),
+(3, 2, 3.5, 'Satisfactory', '2023-10-29', b'1', 'Rushda Mansuri'),
+(3, 3, 4.5, 'Great service!', '2023-10-29', b'1', 'Rushda Mansuri'),
+(3, 4, 3.0, 'Could be better', '2023-10-29', b'1', 'Rushda Mansuri'),
+(3, 5, 5.0, 'Perfect!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 9, 4.7, 'Great job!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (2, 10, 3.5, 'Satisfactory service', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 6, 5.0, 'Superb experience!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 7, 2.5, 'Needs improvement', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 8, 4.8, 'Almost perfect!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (3, 9, 4.7, 'Great job!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 10, 3.5, 'Satisfactory service', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (3, 6, 5.0, 'Superb experience!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (3, 7, 2.5, 'Needs improvement', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (3, 8, 4.8, 'Almost perfect!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (5, 9, 4.7, 'Great job!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (5, 10, 3.5, 'Satisfactory service', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (5, 6, 5.0, 'Superb experience!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (7, 7, 2.5, 'Needs improvement', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (7, 8, 4.8, 'Almost perfect!', '2023-10-29', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (4, 11, 4.2, 'Pleasant experience!', '2023-10-30', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (5, 11, 3.0, 'Average service', '2023-10-30', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (6, 12, 5.0, 'Outstanding!', '2023-10-30', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (7, 12, 2.0, 'Not up to the mark', '2023-10-31', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (8, 13, 4.9, 'Highly recommended!', '2023-10-31', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (9, 14, 3.8, 'Good but can be better', '2023-10-31', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (10, 15, 4.5, 'Excellent service as always!', '2023-10-31', b'1', 'Rushda Mansuri');
+
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 16, 3.5, 'Met my expectations', '2023-11-01', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (1, 17, 2.5, 'Service was okay', '2023-11-01', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (5, 8, 4.8, 'Almost perfect!', '2023-11-01', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (8, 16, 3.7, 'I would use this service again', '2023-11-02', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (9, 19, 1.5, 'Very disappointing', '2023-11-02', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (9, 10, 4.0, 'Satisfactory service', '2023-11-02', b'1', 'Rushda Mansuri');
+
+INSERT INTO RatingDetails (UserId, ServiceProviderId, Ratings, Comments, ReviewGivenDate, IsActive, CreatedBy) 
+VALUES (7, 19, 5.0, 'Best service I have ever received!', '2023-11-02', b'1', 'Rushda Mansuri');
 
 */

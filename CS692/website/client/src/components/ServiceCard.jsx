@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/ServiceCard.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoaderSpinner from './LoaderSpinner';
 
 const ServiceCard = ({data}) => {
@@ -70,12 +70,12 @@ else{
         </div>
         <div className="product-details">
           <span className="product-catagory">{data.ServiceType}</span>
-          <h4>{data.FirstName}  {data.LastName}</h4>
+          <h4><Link to={`/service-details/${data.ServiceProviderId}`}>{data.FirstName} {data.LastName}</Link></h4>
           <span class="ratings-yellow-star"><b>{data.Ratings}</b> <i class="fa fa-star ratings-yellow-star" aria-hidden="true"></i></span>
           
           <p><b>Address: {data.Address1}, {data.City}, {data.State} {data.ZipCode}<br/></b></p>
           <div className="product-bottom-details">
-            <div className="product-price" style={{textDecoration: 'line-through'}}>${data.DiscountedPrice}</div>
+          <div className="product-price"><span  style={{textDecoration: 'line-through'}}>${data.OriginalPrice}</span> &nbsp;${data.DiscountedPrice}</div>
             <div className="product-links">
               <span><button className='favourite-delete' onClick={handleAddToFavorites}>Add Favorites</button></span> &emsp; 
               <span><button className='favourite-delete'>Add to Cart</button></span>
