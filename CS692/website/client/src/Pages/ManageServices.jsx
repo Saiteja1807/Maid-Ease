@@ -3,7 +3,7 @@ import axios from 'axios';
 import "../index.css";
 import Footer from '../components/Footer';
 import ServiceCard from '../components/ServiceCard';
-import ServiceNavbar from '../components/ServiceNavbar';
+import Navbar from '../components/Navbar';
 
 const ManageServices = () => {
   const [apiData, setData] = useState(null);
@@ -63,7 +63,7 @@ const ManageServices = () => {
 
   return (
     <>
-      <ServiceNavbar /><br /><br />
+      <Navbar /><br /><br />
       <div className="bg-[#672ab2]">
         <div className="container mx-auto text-center py-3">
           <p className="text-sm text-white"><h2>Household Services</h2></p>

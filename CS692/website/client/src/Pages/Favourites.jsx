@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../index.css";
 import Footer from '../components/Footer';
-import FavouritesNavbar from '../components/FavouritesNavbar';
-import FavoriteCards from '../components/FavouriteCards';
+import Navbar from '../components/Navbar';
+import FavoriteCards from '../components/FavouriteCards' 
 
 const Favorites = () => {
   const [apiData, setData] = useState(null);
@@ -71,7 +71,7 @@ const Favorites = () => {
   };
   return (
     <>
-      <FavouritesNavbar/><br /><br />
+      <Navbar/><br /><br />
       <div className="bg-[#672ab2]">
         <div className="container mx-auto text-center py-3">
           <p className="text-sm text-white"><h2>Your Favourites</h2></p>
