@@ -486,6 +486,72 @@ app.get('/ratings/:serviceProviderId', async (req, res) => {
     }
 });
 
+app.get('/orderhistory/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    const orderHistorySQL = `
+        SELECT
+            BD.BookingId,
+            BD.UserId,
+            BD.ServiceProviderId1,
+            BD.ServiceProviderId2,
+            BD.ServiceProviderId3,
+            BD.NetAmount,
+            BD.Tax,
+            BD.Discount,
+            BD.totalPrice,
+            BD.BookingStartDate,
+            BD.BookingEndDate,
+            UD.FirstName,
+            UD.LastName,
+            SPD1.UserDetailId,
+            USPD1.FirstName,
+            USPD1.LastName,
+            USPD1.Address1,
+            USPD1.Address2,
+            USPD1.Country,
+            USPD1.ZipCode,
+            USPD1.EmailId,
+            USPD1.ContactNo,
+            SPD2.UserDetailId,
+            USPD2.FirstName,
+            USPD2.LastName,
+            USPD2.Address1,
+            USPD2.Address2,
+            USPD2.Country,
+            USPD2.ZipCode,
+            USPD2.EmailId,
+            USPD2.ContactNo,
+            SPD3.UserDetailId,
+            USPD3.FirstName,
+            USPD3.LastName,
+            USPD3.Address1,
+            USPD3.Address2,
+            USPD3.Country,
+            USPD3.ZipCode,
+            USPD3.EmailId,
+            USPD3.ContactNo  
+        FROM BookingDetails BD 
+        JOIN UserDetails UD ON BD.UserId = UD.UserId
+        JOIN ServiceProviderDetails SPD1 ON BD.ServiceProviderId1 = SPD1.ServiceProviderId
+        LEFT JOIN ServiceProviderDetails SPD2 ON BD.ServiceProviderId2 = SPD2.ServiceProviderId
+        LEFT JOIN ServiceProviderDetails SPD3 ON BD.ServiceProviderId3 = SPD3.ServiceProviderId
+        JOIN UserDetails USPD1 ON SPD1.UserDetailId = USPD1.UserId
+        LEFT JOIN UserDetails USPD2 ON SPD2.UserDetailId = USPD2.UserId
+        LEFT JOIN UserDetails USPD3 ON SPD3.UserDetailId = USPD3.UserId
+        WHERE  BD.UserId = :userId`;
+
+    try {
+        const orderHistory = await sequelize.query(orderHistorySQL, { 
+            replacements: { userId: userId },
+            type: sequelize.QueryTypes.SELECT 
+        });
+        res.json(orderHistory);
+    } catch (err) {
+        res.status(500).send('Error retrieving order history from the database.');
+    }
+});
+
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

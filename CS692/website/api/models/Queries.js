@@ -130,8 +130,7 @@ CREATE TABLE BookingDetails (
         UserId INT NOT NULL, -- Foriegn Key of UserDetails
         ServiceProviderId1 INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
         ServiceProviderId2 INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
-        ServiceProviderId3 INT NOT NULL, -- Foriegn Key of ServiceProviderDetails
-        PriceId INT NOT NULL, -- Foriegn Key of PriceDetails
+        ServiceProviderId3 INT, -- Foriegn Key of ServiceProviderDetails
         NetAmount FLOAT,
         Tax FLOAT,
         Discount FLOAT,
