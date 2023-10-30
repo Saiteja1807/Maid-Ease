@@ -71,7 +71,7 @@ const Navbar = () => {
             loggedIn? (
               <>
               <Link
-              to="/in-progress"
+              to="/order-history/1"
               className="text-gray-800 hover:text-gray-500"
             >
               Order History
