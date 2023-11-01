@@ -11,6 +11,7 @@ const ServiceProviderDetails = require('./models/ServiceProviderDetails');
 const PriceDetails = require('./models/PriceDetails');
 const FavouriteDetails = require('./models/FavouriteDetails');
 const RatingDetails = require('./models/RatingDetails');
+const CartDetails = require('./models/CartDetails'); 
 const sequelize = require('./database');
 const cookie = require('cookie');
 const app = express();
@@ -589,6 +590,98 @@ app.post('/ratingdetails', async (req, res) => {
         res.status(500).send('Error inserting data into the database.');
     }
 });
+
+app.post('/cartdetails', async (req, res) => {
+    try {
+        const {
+            UserId,
+            ServiceProviderId,
+            AddToCart,
+            IsActive,
+            CreatedBy,
+            UpdatedBy
+        } = req.body;
+  
+        // Create a new record in the CartDetails table
+        const newCartDetail = await CartDetails.create({
+            UserId,
+            ServiceProviderId,
+            AddToCart: true,
+            IsActive: IsActive !== undefined ? IsActive : true,  
+            CreatedDate: new Date(),
+            UpdatedDate: new Date(),
+            CreatedBy: "System",
+            UpdatedBy: ""
+        });
+  
+        res.json(newCartDetail);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error inserting data into the database.');
+    }
+});
+
+app.get('/cartdetails/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    const cartDetailsSQL = `
+    SELECT
+        CD.CartDetailId AS CartDetailId,
+        UD.UserId AS UserId,
+        SUD.FirstName AS FirstName,
+        SUD.LastName AS LastName,
+        SUD.Address1 AS Address1,
+        SUD.Address2 AS Address2,
+        SUD.City AS City,
+        SUD.ZipCode As ZipCode,
+        SUD.EmailId AS Email,
+        SUD.ContactNo AS ContactNo,
+        SPD.ServiceProviderId AS ServiceProviderId,
+        SPD.ImageURL AS ImageURL,
+        SPD.Description AS Description,
+        ST.ServiceTypeName AS ServiceType,
+        PD.OriginalPrice AS OriginalPrice,
+        PD.DiscountinPercentage AS DiscountinPercentage,
+        PD.DiscountedPrice AS DiscountedPrice,
+        SPD.Ratings AS Ratings,
+        (CASE WHEN SPD.Ratings >= 4 THEN true ELSE false END) AS IsHotDeal
+    FROM UserDetails UD
+    JOIN CartDetails CD ON UD.UserId = CD.UserId
+    JOIN ServiceProviderDetails SPD ON CD.ServiceProviderId = SPD.ServiceProviderId
+    JOIN ServiceTypes ST ON SPD.ServiceTypeId = ST.ServiceTypeId
+    JOIN PriceDetails PD ON SPD.ServiceProviderId = PD.ServiceProviderId
+    JOIN UserDetails SUD ON SPD.UserDetailId = SUD.UserId
+    JOIN StateDetails SD ON SD.StateId = SUD.StateId
+    WHERE UD.UserRoledId = 2 AND UD.UserId = ?`;
+
+    try {
+        const cartDetails = await sequelize.query(cartDetailsSQL,
+             { replacements: [userId],
+                type: sequelize.QueryTypes.SELECT});
+        res.json(cartDetails);
+    } catch (err) {
+        res.status(500).send('Error retrieving data from the database.');
+    }
+});
+
+app.delete('/cartdetails/:id', async (req, res, next) => {
+    const cartId = req.params.id;
+    const existingCart = await CartDetails.findByPk(cartId);
+
+    if (!existingCart) {
+        return res.status(404).json({ message: 'Cart item not found' });
+    }
+
+    await CartDetails.destroy({
+        where: {
+            CartDetailId: cartId,
+        },
+    });
+
+    return res.status(204).send(); 
+}, (err, req, res, next) => { 
+    console.error(err);
+    res.status(500).json({ message: 'Error deleting data from the database.' });
+}); 
 
 
 const PORT = 4000;
