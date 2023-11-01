@@ -12,7 +12,9 @@ function Home() {
             <Carousel />
             <ServiceCards />
             <Contact />
-            <Footer />
+            <div className='header-container'>
+                <p className="text-sm text-white">&copy; {new Date().getFullYear()} Developed by MaidEase. All rights reserved.</p>
+            </div>
         </div>
     );
 }

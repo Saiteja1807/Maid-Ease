@@ -10,6 +10,7 @@ const ServiceTypes = require('./models/ServiceTypes');
 const ServiceProviderDetails = require('./models/ServiceProviderDetails');
 const PriceDetails = require('./models/PriceDetails');
 const FavouriteDetails = require('./models/FavouriteDetails');
+const RatingDetails = require('./models/RatingDetails');
 const sequelize = require('./database');
 const cookie = require('cookie');
 const app = express();
@@ -554,6 +555,41 @@ app.get('/orderhistory/:userId', async (req, res) => {
         res.status(500).send('Error retrieving order history from the database.');
     }
 });
+
+app.post('/ratingdetails', async (req, res) => {
+    try {
+        const {
+            UserId,
+            ServiceProviderId,
+            Ratings,
+            Comments,
+            ReviewGivenDate,
+            IsActive,
+            CreatedBy,
+            UpdatedBy
+        } = req.body;
+  
+        // Create a new record in the RatingDetails table
+        const newRating = await RatingDetails.create({
+            UserId,
+            ServiceProviderId,
+            Ratings,
+            Comments,
+            ReviewGivenDate: new Date(), 
+            IsActive: IsActive !== undefined ? IsActive : true,  
+            CreatedDate: new Date(),
+            UpdatedDate: new Date(),
+            CreatedBy: CreatedBy || "System",
+            UpdatedBy: UpdatedBy || "System"
+        });
+  
+        res.json(newRating);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error inserting data into the database.');
+    }
+});
+
 
 const PORT = 4000;
 app.listen(PORT, () => {

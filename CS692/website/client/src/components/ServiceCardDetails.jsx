@@ -79,11 +79,9 @@ const ServiceCardDetails = () => {
         return (
             <div>
                 <Navbar /><br /><br />
-                <div className="bg-[#672ab2]">
-                    <div className="container mx-auto text-center py-3">
-                        <h2 className="text-sm text-white">{serviceDetails.FirstName} {serviceDetails.LastName} - {serviceDetails.ServiceType} Service's</h2>
+                <div className='header-container'>
+                        <h2>{serviceDetails.FirstName} {serviceDetails.LastName} - {serviceDetails.ServiceType} Service's</h2>
                     </div>
-                </div>
                 <section className="service-details">
                     <div className="service-details-container">
                         <img src={serviceDetails.ImageURL} alt={`${serviceDetails.FirstName} ${serviceDetails.LastName}`} />
@@ -100,20 +98,27 @@ const ServiceCardDetails = () => {
                             <span><button className='favourite-delete'>Add to Cart</button></span>
                         </div>
                     </div>
-
+               
                     <div className="ratings-reviews-container">
                         <h3>Ratings & Reviews:</h3>
-                        {ratingsData.map((rating) => (
-                            <div key={rating.RatingsId} className="rating-item">
-                                <h4>{rating.FirstName} {rating.LastName}</h4>
-                                <p>{rating.Ratings}<i className="fa fa-star ratings-yellow-star" aria-hidden="true"></i></p>
-                                <p>{rating.Comments}</p>
-                                <small>Reviewed on {new Date(rating.ReviewGivenDate).toLocaleDateString()}</small>
-                            </div>
-                        ))}
-                    </div>
+                            {ratingsData !== null && ratingsData.length > 0 ? (
+                                ratingsData.map((rating) => (
+                                <div key={rating.RatingsId} className="rating-item">
+                                    <h4>{rating.FirstName} {rating.LastName}</h4>
+                                    <p>{rating.Ratings}<i className="fa fa-star ratings-yellow-star" aria-hidden="true"></i></p>
+                                    <p>{rating.Comments}</p>
+                                    <small>Reviewed on {new Date(rating.ReviewGivenDate).toLocaleDateString()}</small>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="rating-item"> Oops No Ratings Found!! </div>
+                            )}
+                        </div>
+                                       
                 </section>
-                <Footer />
+               <div className='header-container'>
+               <p className="text-sm text-white">&copy; {new Date().getFullYear()} Developed by MaidEase. All rights reserved.</p>
+               </div>
             </div>
         );
     }
