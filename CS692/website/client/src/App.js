@@ -14,6 +14,7 @@ import ServiceCardDetails from "./components/ServiceCardDetails";
 import OrderHistory from "./Pages/OrderHistory";
 import StatisticalData from "./Pages/StatisticalData";
 import Contact from "./components/ContactUs";
+import AddToCart from "./Pages/AddToCart";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
         <Route path="/order-history/:id" element={<OrderHistory />} />
         <Route path="/statistical-data" element={<StatisticalData />} />
         <Route path="/contact-us" element={<Contact />} />
+        <Route path="/add-to-cart/:id" element={<AddToCart />} />
+        
       </Routes>
     </div>
   );

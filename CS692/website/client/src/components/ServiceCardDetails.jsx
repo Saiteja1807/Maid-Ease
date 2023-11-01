@@ -73,6 +73,27 @@ const ServiceCardDetails = () => {
           });
       };
 
+    const handleAddToCart = () => {
+        const requestData = {
+          UserId: 1, 
+          ServiceProviderId: serviceDetails.ServiceProviderId,
+          AddToCart: true,
+          IsActive: true,
+        };
+    
+        axios.post('http://localhost:4000/cartdetails', requestData)
+          .then((response) => {
+            console.log('Record added to cart:', response.data);
+            if (response.status === 200) {
+              alert('Added to Cart.');
+                navigate('/add-to-cart/1');
+            }
+          })
+          .catch((error) => {
+            console.error('Error adding to cart:', error);
+          });
+    };
+    
     if (loading) {
         return <LoaderSpinner />;
     } else {
@@ -95,7 +116,7 @@ const ServiceCardDetails = () => {
 
                         <div className="product-links">
                             <span><button className='favourite-delete' onClick={handleAddToFavorites}>Add Favorites</button></span> &emsp; 
-                            <span><button className='favourite-delete'>Add to Cart</button></span>
+                            <span><button className='favourite-delete' onClick={handleAddToCart}>Add to Cart</button></span>
                         </div>
                     </div>
                

@@ -53,7 +53,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  to="/addtocart"
+                  to="/add-to-cart"
                   className="block w-full px-6 py-2 text-sm hover:bg-gray-100 whitespace-nowrap"
                 >
                   Add to Cart
