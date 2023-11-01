@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        NODEJS_VERSION = '14'  // Specify your desired Node.js version
-        WORKSPACE_PATH = "${WORKSPACE}/node-app"
+        AWS_REGION = 'us-east-2a'
+        AWS_ACCESS_KEY_ID = credentials('maidease_access_key')
+        AWS_SECRET_ACCESS_KEY = credentials('maidease_secret_access_key')
     }
 
     stages {
@@ -13,45 +14,20 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build and Deploy') {
             steps {
-                dir(WORKSPACE_PATH) {
-                    script {
-                        sh "nvm install ${NODEJS_VERSION}"
-                        sh "nvm use ${NODEJS_VERSION}"
-                        sh 'npm install'
-                    }
-                }
-            }
-        }
+                sh 'npm install'
+                sh 'npm run build'
 
-        stage('Build') {
-            steps {
-                dir(WORKSPACE_PATH) {
-                    script {
-                        sh 'npm run build'  // Customize this based on your project setup
-                    }
-                }
-            }
-        }
+                // Replace this with the actual path to your application directory
+                def appDirectory = '/maidease'
 
-        stage('Deploy') {
-            steps {
-                dir(WORKSPACE_PATH) {
-                    script {
-                        sh 'npm start'  // Start your Node.js application
-                    }
-                }
-            }
-        }
-    }
+                // Copy the built files to the application directory
+                sh "cp -r ./build/* ${appDirectory}"
 
-    post {
-        success {
-            echo 'Deployment successful!'
-        }
-        failure {
-            echo 'Deployment failed!'
+                // Optionally, restart your application here, for example:
+                // sh "cd ${appDirectory} && pm2 restart your_app_name"
+            }
         }
     }
 }
