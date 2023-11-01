@@ -1,35 +1,57 @@
 pipeline {
-    agent any 
+    agent any
+
+    environment {
+        NODEJS_VERSION = '14'  // Specify your desired Node.js version
+        WORKSPACE_PATH = "${WORKSPACE}/node-app"
+    }
+
     stages {
-        stage('Static Analysis') {
+        stage('Checkout') {
             steps {
-                echo 'Run the static analysis to the code' 
+                checkout scm
             }
         }
-        stage('Compile') {
+
+        stage('Install Dependencies') {
             steps {
-                echo 'Compile the source code' 
+                dir(WORKSPACE_PATH) {
+                    script {
+                        sh "nvm install ${NODEJS_VERSION}"
+                        sh "nvm use ${NODEJS_VERSION}"
+                        sh 'npm install'
+                    }
+                }
             }
         }
-        stage('Security Check') {
+
+        stage('Build') {
             steps {
-                echo 'Run the security check against the application' 
+                dir(WORKSPACE_PATH) {
+                    script {
+                        sh 'npm run build'  // Customize this based on your project setup
+                    }
+                }
             }
         }
-        stage('Run Unit Tests') {
+
+        stage('Deploy') {
             steps {
-                echo 'Run unit tests from the source code' 
+                dir(WORKSPACE_PATH) {
+                    script {
+                        sh 'npm start'  // Start your Node.js application
+                    }
+                }
             }
         }
-        stage('Run Integration Tests') {
-            steps {
-                echo 'Run only crucial integration tests from the source code' 
-            }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
         }
-        stage('Publish Artifacts') {
-            steps {
-                echo 'Save the assemblies generated from the compilation' 
-            }
+        failure {
+            echo 'Deployment failed!'
         }
     }
 }
