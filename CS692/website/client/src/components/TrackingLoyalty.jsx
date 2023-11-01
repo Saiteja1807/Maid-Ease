@@ -19,39 +19,39 @@ function TrackingLoyalty() {
     }, [userId]);
 
     return (
-        <div className="app-container">
-            <Navbar /><br /><br />
-            <div className="content-wrapper">
-                <div className="bg-[#672ab2]">
-                    <div className="container mx-auto text-center py-3">
-                        <h2 className="text-sm text-white">Track Loyalty</h2>
-                    </div>
-                </div>
-                <div className="table-container">
-                    <table className="tracking-table">
-                        <thead className="tracking-thead">
-                            <tr>
-                                <th>Activity</th>
-                                <th>Comments</th>
-                                <th>Activity Date</th>
-                                <th>Added By</th>
-                            </tr>
-                        </thead>
-                        <tbody className="tracking-tbody">
-                            {data.map((item, index) => (
-                                <tr key={index}>
-                                    <td className="tracking-td">{item.Activity}</td>
-                                    <td className="tracking-td">{item.Comments}</td>
-                                    <td className="tracking-td">{item.ActivityDate}</td>
-                                    <td className="tracking-td">{item.CreatedBy}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+        <>
+            <Navbar />
+            <br /><br />
+            <div className='header-container'>
+                <h2>Tracking Loyalty</h2>
             </div>
-            <Footer />
-        </div>
+            <div className="table-container">
+                <table className="tracking-table">
+                    <thead className="tracking-thead">
+                        <tr>
+                            <th>Activity</th>
+                            <th>Comments</th>
+                            <th>Activity Date</th>
+                            <th>Added By</th>
+                        </tr>
+                    </thead>
+                    <tbody className="tracking-tbody">
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td className="tracking-td">{item.Activity}</td>
+                                <td className="tracking-td">{item.Comments}</td>
+                                <td className="tracking-td">{item.ActivityDate}</td>
+                                <td className="tracking-td">{item.CreatedBy}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <br /><br />
+            <div className='header-container'>
+                <p className="text-sm text-white">&copy; {new Date().getFullYear()} Developed by MaidEase. All rights reserved.</p>
+            </div>
+        </>
     );
 }
 

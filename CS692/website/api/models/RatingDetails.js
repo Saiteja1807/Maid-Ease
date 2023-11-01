@@ -30,7 +30,7 @@ RatingDetails.init({
         allowNull: false
     },
     Comments: {
-        type: DataTypes.STRING(50)
+        type: DataTypes.STRING(1000)
     },
     ReviewGivenDate: {
         type: DataTypes.DATE
