@@ -80,10 +80,10 @@ const Navbar = () => {
             ):(
               <>
               <Link
-              to="/in-progress"
+              to="/contact-us"
               className="text-gray-800 hover:text-gray-500"
             >
-              Blog
+              ContactUs
             </Link>
               </>
             )
