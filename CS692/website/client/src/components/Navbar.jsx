@@ -80,10 +80,10 @@ const Navbar = () => {
             ):(
               <>
               <Link
-              to="/in-progress"
+              to="/contact-us"
               className="text-gray-800 hover:text-gray-500"
             >
-              Blog
+              ContactUs
             </Link>
               </>
             )
@@ -95,13 +95,21 @@ const Navbar = () => {
                 <a href="/account/profile" className="text-gray-800 hover:text-gray-500">
                   <FaUserCircle size={24} />
                 </a>
-                <ul className="absolute right-0 mt-1 space-y-1 text-gray-800 bg-white border border-gray-300 rounded-md shadow-md hidden group-hover:block w-32">
+                <ul className="absolute right-0 mt-1 space-y-1 text-gray-800 bg-white border border-gray-300 rounded-md shadow-md hidden group-hover:block w-34">
                   <li>
                     <Link
                       to="/account/profile"
                       className="block w-full px-6 py-2 text-sm hover:bg-gray-100 whitespace-nowrap"
                     >
                       Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="statistical-data"
+                      className="block w-full px-6 py-2 text-sm hover:bg-gray-100 whitespace-nowrap"
+                    >
+                      Statistica Data
                     </Link>
                   </li>
                   <li>

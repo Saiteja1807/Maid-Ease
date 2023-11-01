@@ -12,6 +12,8 @@ import Favorites from "./Pages/Favourites";
 import TrackingLoyalty from "./components/TrackingLoyalty";
 import ServiceCardDetails from "./components/ServiceCardDetails";
 import OrderHistory from "./Pages/OrderHistory";
+import StatisticalData from "./Pages/StatisticalData";
+import Contact from "./components/ContactUs";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/trackingLoyalty" element={<TrackingLoyalty/>}/>
         <Route path="/service-details/:id" element={<ServiceCardDetails />} />
         <Route path="/order-history/:id" element={<OrderHistory />} />
+        <Route path="/statistical-data" element={<StatisticalData />} />
+        <Route path="/contact-us" element={<Contact />} />
       </Routes>
     </div>
   );
