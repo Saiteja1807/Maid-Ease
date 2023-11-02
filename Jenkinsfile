@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build and Deploy') {
             steps {
-                script {
+                dir('/CS692/website') {
                     // sh 'npm install'
                     // sh 'npm run build'
 
