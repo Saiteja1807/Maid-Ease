@@ -52,8 +52,7 @@ const AddToCartCards = ({data, onRemove}) => {
           .post('http://localhost:4000/bookingdetails', payload)
           .then((response) => {
               if (response.status === 200) {
-                  alert('Service booked successfully.');
-                  // Additional logic after booking (like navigating to another page if needed)
+                navigate('/booking-confirmation', { state: { bookingDetails: payload } });
               } else {
                   console.error('Unexpected response status:', response.status);
               }

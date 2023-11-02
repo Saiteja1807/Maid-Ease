@@ -15,6 +15,7 @@ import OrderHistory from "./Pages/OrderHistory";
 import StatisticalData from "./Pages/StatisticalData";
 import Contact from "./components/ContactUs";
 import AddToCart from "./Pages/AddToCart";
+import BookingConfirmation from "./Pages/BookingConfirmation";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/statistical-data" element={<StatisticalData />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/add-to-cart/:id" element={<AddToCart />} />
+        <Route path="/booking-confirmation" element={<BookingConfirmation />} />
         
       </Routes>
     </div>
