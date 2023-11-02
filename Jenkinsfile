@@ -17,8 +17,8 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 script {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    // sh 'npm install'
+                    // sh 'npm run build'
 
                     def appDirectory = '/maidease'
 
