@@ -14,20 +14,15 @@ pipeline {
             }
         }
 
-        
-         stage('Build') {
-            steps {
-                dir('/CS692/website'){
-                script{
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
-            }}
-
-        stage('Deploy') {
+      stage('Build and Deploy') {
             steps {
                 script {
+
+                    
+                        sh 'npm install'
+                        sh 'npm run build'
+                    
+
                     def appDirectory = '/maidease'
 
                     // Copy the built files to the application directory
@@ -35,9 +30,11 @@ pipeline {
 
                     // Optionally, restart your application here, for example:
                     // sh "cd ${appDirectory} && pm2 restart your_app_name"
+                
                 }
-        }
-    }
+            }
+        }  
+     
     }
 }
 
