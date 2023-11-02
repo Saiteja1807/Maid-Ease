@@ -15,7 +15,7 @@ const AddToCartCards = ({data, onRemove}) => {
           .then((response) => {
             if (response.status === 204) {
               // Removal was successful
-              alert('Removed from your Cart.');
+                alert('Removed from your Cart.');
               onRemove(data.CartDetailsId); // Ensure you're removing the correct item ID
               navigate('/add-to-cart/1'); // Navigate back to cart or to the relevant page
             } else {
@@ -51,8 +51,7 @@ const AddToCartCards = ({data, onRemove}) => {
       axios
           .post('http://localhost:4000/bookingdetails', payload)
           .then((response) => {
-              if (response.status === 201) {
-                  handleRemove();
+              if (response.status === 200) {
                   alert('Service booked successfully.');
                   // Additional logic after booking (like navigating to another page if needed)
               } else {

@@ -110,16 +110,21 @@ const OrderHistory = () => {
                         <span>&emsp;&emsp;&emsp;Email Address: {selectedOrder.SP1EmailId}</span><br/>
                         <span>&emsp;&emsp;&emsp;Contact No: {selectedOrder.SP1ContactNo}</span><br/>
                         </p><br/>
-                        <p>Service 2: 
-                        <span className="ratings-container">
+                        {
+                            selectedOrder.SP2UserId ? ( <>
+                                <p>Service 2: 
+                            <span className="ratings-container">
                                 <button className="give-ratings" onClick={handleShowRatings}>Give Ratings</button>
-                        </span>
-                        <span>&emsp;&emsp;&emsp;Name: {selectedOrder.SP2FirstName} {selectedOrder.SP2LastName}</span><br/>
-                        <span>&emsp;&emsp;&emsp;Service Type: House Cleaning</span><br/>
-                        <span>&emsp;&emsp;&emsp;Address: {selectedOrder.SP2Address1}, {selectedOrder.SP2Address2}, {selectedOrder.SP2City}, New Jersey, {selectedOrder.SP2Country} - {selectedOrder.SP2ZipCode}</span><br/>
-                        <span>&emsp;&emsp;&emsp;Email Address: {selectedOrder.SP2EmailId}</span><br/>
-                        <span>&emsp;&emsp;&emsp;Contact No: {selectedOrder.SP2ContactNo}</span><br/>
-                        </p><br/>
+                            </span>
+                            <span>&emsp;&emsp;&emsp;Name: {selectedOrder.SP2FirstName} {selectedOrder.SP2LastName}</span><br/>
+                            <span>&emsp;&emsp;&emsp;Service Type: House Cleaning</span><br/>
+                            <span>&emsp;&emsp;&emsp;Address: {selectedOrder.SP2Address1}, {selectedOrder.SP2Address2}, {selectedOrder.SP2City}, New Jersey, {selectedOrder.SP2Country} - {selectedOrder.SP2ZipCode}</span><br/>
+                            <span>&emsp;&emsp;&emsp;Email Address: {selectedOrder.SP2EmailId}</span><br/>
+                            <span>&emsp;&emsp;&emsp;Contact No: {selectedOrder.SP2ContactNo}</span><br/>
+                            </p><br/>
+                            </>) : ( <></>)
+                        }
+                        
                         {
                             selectedOrder.SP3UserId ? ( <>
                                 <p>Service 3: 
