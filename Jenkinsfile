@@ -1,40 +1,35 @@
 pipeline {
-    agent any
-
-    environment {
-        AWS_REGION = 'your_aws_region'
-        AWS_ACCESS_KEY_ID = credentials('maidease_access_key')
-        AWS_SECRET_ACCESS_KEY = credentials('maidease_secret_access_key')
-    }
-
+    agent any 
     stages {
-        stage('Checkout') {
+        stage('Static Analysis') {
             steps {
-                checkout scm
+                echo 'Run the static analysis to the code' 
             }
         }
-
-      stage('Build and Deploy') {
+        stage('Compile') {
             steps {
-                script {
-
-                    
-                        sh 'npm install'
-                        sh 'npm run build'
-                    
-
-                    def appDirectory = '/maidease'
-
-                    // Copy the built files to the application directory
-                    sh "cp -r ./build/* ${appDirectory}"
-
-                    // Optionally, restart your application here, for example:
-                    // sh "cd ${appDirectory} && pm2 restart your_app_name"
-                
-                }
+                echo 'Compile the source code' 
             }
-        }  
-     
+        }
+        stage('Security Check') {
+            steps {
+                echo 'Run the security check against the application' 
+            }
+        }
+        stage('Run Unit Tests') {
+            steps {
+                echo 'Run unit tests from the source code' 
+            }
+        }
+        stage('Run Integration Tests') {
+            steps {
+                echo 'Run only crucial integration tests from the source code' 
+            }
+        }
+        stage('Publish Artifacts') {
+            steps {
+                echo 'Save the assemblies generated from the compilation' 
+            }
+        }
     }
 }
-
