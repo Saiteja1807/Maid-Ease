@@ -32,4 +32,20 @@ pipeline {
             }
         }
     }
+     post {
+        success {
+            emailext(
+                subject: "Jenkins Pipeline Success",
+                body: "Your Jenkins pipeline has completed successfully.",
+                to: "sm54187n@pace.edu"
+            )
+        }
+        failure {
+            emailext(
+                subject: "Jenkins Pipeline Failure",
+                body: "Your Jenkins pipeline has failed. Please check the logs for details.",
+                to: "sm54187n@pace.edu"
+            )
+        }
+    }
 }
