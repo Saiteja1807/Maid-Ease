@@ -12,6 +12,7 @@ const PriceDetails = require('./models/PriceDetails');
 const FavouriteDetails = require('./models/FavouriteDetails');
 const RatingDetails = require('./models/RatingDetails');
 const CartDetails = require('./models/CartDetails'); 
+const BookingDetails = require('./models/BookingDetails');
 const sequelize = require('./database');
 const cookie = require('cookie');
 const app = express();
@@ -683,6 +684,49 @@ app.delete('/cartdetails/:id', async (req, res, next) => {
     res.status(500).json({ message: 'Error deleting data from the database.' });
 }); 
 
+app.post('/bookingdetails', async (req, res) => {
+    try {
+        const {
+            UserId,
+            ServiceProviderId1,
+            ServiceProviderId2,
+            ServiceProviderId3,
+            NetAmount,
+            Tax,
+            Discount,
+            TotalPrice,
+            BookingStartDate,
+            BookingEndDate,
+            IsActive,
+            CreatedBy,
+            UpdatedBy
+        } = req.body;
+
+        // Create a new record in the BookingDetails table
+        const newBookingDetail = await BookingDetails.create({
+            UserId,
+            ServiceProviderId1,
+            ServiceProviderId2,
+            ServiceProviderId3,
+            NetAmount,
+            Tax,
+            Discount,
+            TotalPrice,
+            BookingStartDate,
+            BookingEndDate,
+            IsActive: IsActive !== undefined ? IsActive : true,
+            CreatedDate: new Date(),
+            UpdatedDate: new Date(),
+            CreatedBy: "System",
+            UpdatedBy: ""
+        });
+
+        res.json(newBookingDetail);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error inserting data into the database.');
+    }
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {

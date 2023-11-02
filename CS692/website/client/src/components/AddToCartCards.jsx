@@ -31,6 +31,38 @@ const AddToCartCards = ({data, onRemove}) => {
           });
     };
     
+    const handleBookService = () => {
+      const payload = {
+          UserId: data.UserId,
+          ServiceProviderId1: data.ServiceProviderId,
+          ServiceProviderId2 : null,
+          ServiceProviderId3: null,
+          NetAmount: data.DiscountedPrice,
+          Tax: ((data.DiscountedPrice/100) * 3.5).toFixed(2),
+          Discount: 10,
+          TotalPrice:((data.DiscountedPrice + ((data.DiscountedPrice/100) * 3.5)) - 10).toFixed(2),
+          BookingStartDate: new Date(),
+          BookingEndDate: new Date(),
+          IsActive: true,
+          CreatedBy: "System",
+          UpdatedBy : ""
+      };
+
+      axios
+          .post('http://localhost:4000/bookingdetails', payload)
+          .then((response) => {
+              if (response.status === 201) {
+                  handleRemove();
+                  alert('Service booked successfully.');
+                  // Additional logic after booking (like navigating to another page if needed)
+              } else {
+                  console.error('Unexpected response status:', response.status);
+              }
+          })
+          .catch((error) => {
+              console.error('Error booking service:', error);
+          });
+  };
 
     useEffect(() => {
       const loadData = async () => { 
@@ -59,7 +91,7 @@ const AddToCartCards = ({data, onRemove}) => {
             <div className="product-price"><span  style={{textDecoration: 'line-through'}}>${data.OriginalPrice}</span> &nbsp;${data.DiscountedPrice}</div>
             <div className="product-links">
             <span><button className='favourite-delete' onClick={handleRemove}>Remove</button></span> &emsp; 
-              <span><button className='favourite-delete'>Book Service</button></span>
+              <span><button className='favourite-delete' onClick={handleBookService}>Book Service</button></span>
             </div>
           </div>
         </div>

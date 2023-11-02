@@ -19,7 +19,7 @@ BookingDetails.init({
     },
     ServiceProviderId1: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'ServiceProviderDetails',
             key: 'ServiceProviderId'
@@ -27,7 +27,6 @@ BookingDetails.init({
     },
     ServiceProviderId2: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
             model: 'ServiceProviderDetails',
             key: 'ServiceProviderId'

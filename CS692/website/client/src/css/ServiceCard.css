@@ -104,6 +104,7 @@
 
 .favourite-delete:hover {
     background-color: #4834d4;
+    cursor: pointer;
 }
 
 .ratings-yellow-star {
