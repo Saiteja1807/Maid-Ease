@@ -7,42 +7,47 @@ const MakeAppointment = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const payload = location.state?.bookingPayload; 
-  console.log(payload);
 
   const [startDate, setStartDate] = useState('');
   const [startTime, setStartTime] = useState('');
 
-  const handleConfirm = () => {
-    const appointmentDetails = {
-      UserId: payload.UserId,
-      ServiceProviderId1: payload.ServiceProviderId,
-      ServiceProviderId2: null,
-      ServiceProviderId3: null,
-      NetAmount: payload.DiscountedPrice,
-      Tax: ((payload.DiscountedPrice / 100) * 3.5).toFixed(2),
-      Discount: 10,
-      TotalPrice: ((payload.DiscountedPrice + ((payload.DiscountedPrice / 100) * 3.5)) - 10).toFixed(2),
-      BookingStartDate: startDate,
-      BookingEndDate: new Date(),  // This may need adjustment based on your logic
-      SlotTime: startTime,
-      IsActive: true,
-      CreatedBy: "System",
-      UpdatedBy: ""
-    };
+  const handleConfirm = (payload) => {
+    let start = new Date(startDate);
+    let end = new Date(start);
+    end.setDate(end.getDate() + 3);
+    
+    payload.BookingStartDate = formatDate(start);
+    payload.BookingEndDate = formatDate(end);
+    payload.SlotTime = formatTime(startTime);
+    
+    console.log(payload)
 
-    axios
-      .post('http://localhost:4000/bookingdetails', appointmentDetails)
-      .then((response) => {
-        if (response.status === 200) {
-          navigate('/booking-confirmation', { state: { appointmentDetails } });
-        } else {
-          console.error('Unexpected response status:', response.status);
-        }
-      })
-      .catch((error) => {
-        console.error('Error booking service:', error);
-      });
   };
+
+  const formatDate = (date) => {
+    let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+  
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+  
+    return [month, day, year].join('/');
+  };
+  
+  const formatTime = (time) => {
+    let [hours, minutes] = time.split(':');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+  
+    return `${hours}:${minutes} ${ampm}`;
+  };
+  
 
   return (
     <>
@@ -74,7 +79,7 @@ const MakeAppointment = () => {
                                 onChange={(e) => setStartTime(e.target.value)}/>
                         </p>
                         <p><br/>
-                        <button className="favourite-delete" onClick={handleConfirm}>
+                        <button className="favourite-delete" onClick={handleConfirm(payload)}>
                             Confirm Appointment
                         </button>
                         </p>

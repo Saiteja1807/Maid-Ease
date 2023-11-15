@@ -30,27 +30,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.appointment-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 400px;
-}
-
-.appointment-form input[type="date"],
-.appointment-form input[type="time"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #672ab2;
-    font-size: 16px;
-    color: #333;
-    background-color: white;
-}
-
 .favourite-delete {
     background-color: #672ab2;
     border: none;
