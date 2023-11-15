@@ -75,6 +75,9 @@ BookingDetails.init({
     },
     UpdatedBy: {
         type: DataTypes.STRING(50)
+    },
+    Slotime: {
+        type: DataTypes.TIME
     }
 }, {
     sequelize,

@@ -503,6 +503,7 @@ app.get('/orderhistory/:userId', async (req, res) => {
             BD.Tax AS Tax,
             BD.Discount AS Discount,
             BD.TotalPrice AS TotalPrice,
+            BD.SlotTime As SlotTime,
             BD.BookingStartDate AS BookingStartDate,
             BD.BookingEndDate AS BookingEndDate,
             UD.FirstName AS CustFirstName,
@@ -697,7 +698,8 @@ app.post('/bookingdetails', async (req, res) => {
             TotalPrice,
             BookingStartDate,
             BookingEndDate,
-            IsActive,
+            SlotTime,
+            IsActive,           
             CreatedBy,
             UpdatedBy
         } = req.body;
@@ -714,6 +716,7 @@ app.post('/bookingdetails', async (req, res) => {
             TotalPrice,
             BookingStartDate,
             BookingEndDate,
+            SlotTime,
             IsActive: IsActive !== undefined ? IsActive : true,
             CreatedDate: new Date(),
             UpdatedDate: new Date(),
