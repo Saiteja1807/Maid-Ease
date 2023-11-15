@@ -16,6 +16,7 @@ import StatisticalData from "./Pages/StatisticalData";
 import Contact from "./components/ContactUs";
 import AddToCart from "./Pages/AddToCart";
 import BookingConfirmation from "./Pages/BookingConfirmation";
+import MakeAppointment from "./components/MakeAppointment";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/add-to-cart/:id" element={<AddToCart />} />
         <Route path="/booking-confirmation" element={<BookingConfirmation />} />
+        <Route path="make-appointment" element={<MakeAppointment/>}/>
         
       </Routes>
     </div>
