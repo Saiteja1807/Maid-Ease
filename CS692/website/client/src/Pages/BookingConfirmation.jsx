@@ -1,11 +1,41 @@
 import React from 'react';
 import '../css/BookingConfirmation.css';
 import Navbar from '../components/Navbar';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function BookingConfirmation() {
+    const navigate = useNavigate();
     const location = useLocation();
     const bookingDetails = location.state?.bookingDetails;
+    const bookingId = bookingDetails.BookingId;
+    console.log(bookingDetails);
+    
+    const handleCancelAppointment = () => {
+        axios.delete(`http://localhost:4000/bookingdetails/${bookingId}`)
+        .then(response => {
+            if (response.status === 204) {
+                  alert('Your Appointment is Cancelled');
+                navigate('/add-to-cart/1');
+              } else {
+                console.error('Unexpected response status:', response.status);
+              }
+        })
+        .catch(error => {
+            // Handle any errors here
+            console.error("Error cancelling the appointment:", error);
+        });
+    };
+
+    const handleModifyAppointment = () => {
+        // Logic to modify appointment
+        console.log("Modify Appointment");
+    };
+
+    const handleSendReminder = () => {
+        // Logic to send reminder
+        console.log("Reminder Sent");
+    };
 
     return (<>
             <Navbar />
@@ -17,12 +47,18 @@ function BookingConfirmation() {
                 {bookingDetails && (
                     <div className="booking-details-container">
                         <p><strong>Alex Smith - Laundry Service's</strong></p>
+                        <p><strong>Slot Time: </strong> {bookingDetails.SlotTime}</p>
                         <p><strong>Booking Start Date: </strong> {new Date(bookingDetails.BookingStartDate).toLocaleDateString()}</p>
                         <p><strong>Booking End Date: </strong> {new Date(bookingDetails.BookingEndDate).toLocaleDateString()}</p>
                         <p><strong>Net Amount: </strong> ${bookingDetails.NetAmount}</p>
                         <p><strong>Tax: </strong> ${bookingDetails.Tax}</p>
                         <p><strong>Discount: </strong> ${bookingDetails.Discount}</p>
                         <p><strong>Total Price: </strong> ${bookingDetails.TotalPrice}</p>
+                        <div className="booking-buttons">
+                            <button onClick={handleCancelAppointment} className="favourite-delete">Cancel Appointment</button>
+                            <button onClick={handleModifyAppointment} className="favourite-delete">Modify Appointment</button>
+                            <button onClick={handleSendReminder} className="favourite-delete">Send Reminder</button>
+                        </div>
                     </div>
                 )}
             </div>

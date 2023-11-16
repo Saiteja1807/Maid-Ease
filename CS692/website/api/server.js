@@ -731,6 +731,27 @@ app.post('/bookingdetails', async (req, res) => {
     }
 });
 
+app.delete('/bookingdetails/:id', async (req, res, next) => {
+    const bookingId = req.params.id;
+    const existingBooking = await BookingDetails.findByPk(bookingId);
+
+    if (!existingBooking) {
+        return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    await BookingDetails.destroy({
+        where: {
+            BookingId: bookingId,
+        },
+    });
+
+    return res.status(204).send(); 
+}, (err, req, res, next) => { 
+    console.error(err);
+    res.status(500).json({ message: 'Error deleting booking from the database.' });
+});
+
+
 const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

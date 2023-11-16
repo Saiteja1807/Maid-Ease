@@ -11,51 +11,43 @@ BookingDetails.init({
     },
     UserId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'UserDetails',
-            key: 'UserId'
-        }
+        allowNull: false
     },
     ServiceProviderId1: {
         type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-            model: 'ServiceProviderDetails',
-            key: 'ServiceProviderId'
-        }
+        allowNull: true
     },
     ServiceProviderId2: {
         type: DataTypes.INTEGER,
-        references: {
-            model: 'ServiceProviderDetails',
-            key: 'ServiceProviderId'
-        }
+        allowNull: true
     },
     ServiceProviderId3: {
         type: DataTypes.INTEGER,
-        references: {
-            model: 'ServiceProviderDetails',
-            key: 'ServiceProviderId'
-        }
+        allowNull: true
     },
     NetAmount: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: true
     },
     Tax: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: true
     },
     Discount: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: true
     },
     TotalPrice: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: true
     },
     BookingStartDate: {
-        type: DataTypes.DATE
+        type: DataTypes.DATEONLY, // Use DATEONLY for date without time
+        allowNull: true
     },
     BookingEndDate: {
-        type: DataTypes.DATE
+        type: DataTypes.DATEONLY, // Use DATEONLY for date without time
+        allowNull: true
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -67,17 +59,19 @@ BookingDetails.init({
     },
     UpdatedDate: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-        onUpdate: DataTypes.NOW
+        defaultValue: DataTypes.NOW
     },
     CreatedBy: {
-        type: DataTypes.STRING(50)
+        type: DataTypes.STRING(50),
+        allowNull: true
     },
     UpdatedBy: {
-        type: DataTypes.STRING(50)
+        type: DataTypes.STRING(50),
+        allowNull: true
     },
-    Slotime: {
-        type: DataTypes.TIME
+    SlotTime: {
+        type: DataTypes.TIME,
+        allowNull: true
     }
 }, {
     sequelize,
