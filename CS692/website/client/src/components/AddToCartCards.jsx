@@ -47,7 +47,8 @@ const AddToCartCards = ({ data, onRemove }) => {
             SlotTime: null,
             IsActive: true,
             CreatedBy: "System",
-            UpdatedBy: ""
+            UpdatedBy: "",
+            BookingId: 0
         };
         // Navigate to the make-appointment page with the payload
         navigate('/make-appointment', { state: { bookingPayload: payload } });
