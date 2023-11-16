@@ -141,7 +141,8 @@ CREATE TABLE BookingDetails (
         CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         UpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         CreatedBy VARCHAR(50),
-        UpdatedBy VARCHAR(50)
+        UpdatedBy VARCHAR(50),
+        SlotTime VARCHAR(255)
 );
 
 CREATE TABLE RatingDetails (
