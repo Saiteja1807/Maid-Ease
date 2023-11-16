@@ -16,6 +16,7 @@ const BookingDetails = require('./models/BookingDetails');
 const sequelize = require('./database');
 const cookie = require('cookie');
 const app = express();
+const nodemailer = require('nodemailer');
 
 app.use(express.json());
 app.use(cors({
@@ -751,6 +752,39 @@ app.delete('/bookingdetails/:id', async (req, res, next) => {
     res.status(500).json({ message: 'Error deleting booking from the database.' });
 });
 
+app.post('/send-reminder', async (req, res) => {
+    const bookingDetails = req.body.bookingDetails;
+
+    if (!bookingDetails) {
+        return res.status(400).json({ message: 'No booking details provided.' });
+    }
+
+    const userEmail = 'mansurirushda7@gmail.com'; 
+
+    // Nodemailer setup
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'rushdamansuri1402@gmail.com', 
+            pass: '' 
+        }
+    });
+
+    const mailOptions = {
+        from: 'rushdamansuri1402@gmail.com', 
+        to: userEmail,
+        subject: 'Booking Reminder',
+        text: `This is a reminder for your booking on.` 
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.send('Reminder email sent');
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).send('Error sending reminder');
+    }
+});
 
 const PORT = 4000;
 app.listen(PORT, () => {

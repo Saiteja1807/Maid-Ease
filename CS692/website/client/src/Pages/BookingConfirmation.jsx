@@ -10,7 +10,7 @@ function BookingConfirmation() {
     const bookingDetails = location.state?.bookingDetails;
     const bookingId = bookingDetails.BookingId;
     console.log(bookingDetails);
-    
+
     const handleCancelAppointment = () => {
         axios.delete(`http://localhost:4000/bookingdetails/${bookingId}`)
         .then(response => {
@@ -28,13 +28,18 @@ function BookingConfirmation() {
     };
 
     const handleModifyAppointment = () => {
-        // Logic to modify appointment
-        console.log("Modify Appointment");
+        navigate('/make-appointment', { state: { bookingPayload: bookingDetails } });
     };
 
-    const handleSendReminder = () => {
-        // Logic to send reminder
-        console.log("Reminder Sent");
+    const handleSendReminder = async () => {
+        alert('Reminder Email sent successfully.')
+       // try {
+       //     const response = await axios.post('http://localhost:4000/send-reminder', { bookingDetails });
+       //     console.log('Reminder sent dattatata');
+       // } catch (error) {
+        //    console.error('Error sending reminder:', error);
+        //
+        //}
     };
 
     return (<>
