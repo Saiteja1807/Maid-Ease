@@ -1,4 +1,4 @@
-# Team 1: Computer Science Project 1: MaidEase
+# Team 1: Computer Science Project 1 & 2: MaidEase
 
 Project Manager: Sai Teja Malladi<br/>
 Project Owner: Jahid Hassan<br/>
