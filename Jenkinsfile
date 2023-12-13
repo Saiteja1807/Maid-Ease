@@ -28,7 +28,7 @@ pipeline {
         }
        stage('build') {
             steps {
-                sh 'cd /home/ec2-user/codebase/dev/maidease'
+                sh 'pwd'
                 sh 'git clone https://github.com/Saiteja1807/Maid-Ease.git'
                 echo 'moved the artifact to specific folder' 
                 sh 'cd /home/ec2-user/codebase/dev/maidease/Maid-Ease/CS692/website'
