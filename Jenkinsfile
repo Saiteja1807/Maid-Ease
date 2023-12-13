@@ -28,9 +28,9 @@ pipeline {
         }
        stage('build') {
             steps {
-                sh 'sudo git clone https://github.com/Saiteja1807/Maid-Ease.git /home/codebase/dev/maidease'
+                sh 'sudo git clone https://github.com/Saiteja1807/Maid-Ease.git /home/ec2-user/codebase/dev/maidease'
                 echo 'moved the artifact to specific folder' 
-                sh 'cd /home/codebase/dev/maidease/Maid-Ease/CS692/website'
+                sh 'cd /home/ec2-user/codebase/dev/maidease/Maid-Ease/CS692/website'
                 sh 'npm install'
             }
         }
@@ -40,7 +40,7 @@ pipeline {
          stage('Deploy') {
             steps {
                 script {
-                   sh 'cd cd /home/codebase/dev/maidease/Maid-Ease/CS692/website/client'
+                   sh 'cd cd /home/ec2-user/codebase/dev/maidease/Maid-Ease/CS692/website/client'
                    sh 'npm start'
                 }
         }
