@@ -28,7 +28,7 @@ pipeline {
         }
        stage('build') {
             steps {
-                sh git clone https://github.com/your-username/your-repo.git /home/codebase/dev/maidease
+                sh git clone https://github.com/Saiteja1807/Maid-Ease.git /home/codebase/dev/maidease
                 sh 'cd /home/codebase/dev/maidease/Maid-Ease/CS692/website'
                 sh 'npm install'
             }
