@@ -2,10 +2,10 @@ const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
     dialect: 'mysql',
-    host: 'localhost',
+    host: 'database-1.cwvjonlr9qap.us-east-2.rds.amazonaws.com',
     database: 'maid_ease',
     username: 'root',
-    password: 'Thankyou@1415',
+    password: 'MaidEase#99',
 });
 
 sequelize.authenticate()
